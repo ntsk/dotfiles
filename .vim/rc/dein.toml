@@ -1,0 +1,197 @@
+# ColorScheme
+[[plugins]]
+repo ='w0ng/vim-hybrid'
+
+# Basic
+[[plugins]]
+repo ='vim-jp/vimdoc-ja'
+[[plugins]]
+repo = 'Shougo/vimproc'
+hook_add = '''
+  let g:vimproc#download_windows_dll = 1
+'''
+[[plugins]]
+repo = 'thinca/vim-singleton'
+if = 'has("clientserver")'
+hook_source = '''
+  call singleton#enable()
+'''
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+on_cmd = 'Vitalize'
+
+# Completion
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
+hook_add = '''
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_auto_delimiter = 1
+'''
+[[plugins]]
+repo = 'Shougo/neosnippet'
+on_source = 'neocomplete.vim'
+hook_add = '''
+  imap <expr><Tab> neosnippet#expandable_or_jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<Tab>"
+'''
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_source = 'neosnippet'
+
+# Util
+[[plugins]]
+repo = 'Shougo/unite.vim'
+on_cmd = 'Unite'
+hook_add = '''
+  nnoremap <Leader>u :<C-u>Unite buffer<CR>
+  nnoremap <Leader>U :<C-u>Unite file_mru<CR>
+  nnoremap <Leader>d :<C-u>Unite dein<CR>
+  nnoremap <Leader>p :<C-u>Unite file_rec:!<CR>
+'''
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = 'unite.vim'
+[[plugins]]
+repo = 'Shougo/vimfiler'
+on_cmd = 'VimFiler'
+hook_add = '''
+  augroup MyAugroup
+    autocmd FileType vimfiler nnoremap <silent><buffer><expr> <C-t> vimfiler#do_action('tabopen')
+  augroup END
+
+  nnoremap <Leader><Leader> :<C-u>VimFilerCurrentDir -explorer -force-quit<CR>
+  nnoremap <Leader>f :<C-u>VimFilerCurrentDir -explorer -no-force-quit<CR>
+  let g:vimfiler_as_default_explorer = 1
+'''
+hook_post_source = '''
+  call vimfiler#custom#profile("default", "context", {"safe": 0, "auto_cd": 1})
+'''
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
+[[plugins]]
+repo = 'chrisbra/Recover.vim'
+on_event = 'SwapExists'
+
+# Quickfix
+[[plugins]]
+repo = 'cohama/vim-hier'
+on_event = 'QuickFixCmdPre'
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_cmd = 'Qfreplace'
+## quickrun
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+on_map = '<Plug>'
+hook_add = '''
+  nmap <Leader>r <Plug>(quickrun)
+'''
+hook_post_source = '''
+  if !exists("g:quickrun_config") | let g:quickrun_config = {} | endif
+  let g:quickrun_config["_"] = {"runner" : "vimproc", "runner/vimproc/updatetime" : 60}
+'''
+[[plugins]]
+repo = 'w0rp/ale'
+on_cmd = 'ALEEnable'
+hook_add = '''
+  if !exists("g:ale_linters") | let g:ale_linters = {} | endif
+  let g:ale_linters['php'] = ['php', 'phpcs', 'phpmd']
+  let g:ale_php_phpcs_standard = " %s"
+  let g:ale_echo_msg_format = "%linter%: %s"
+'''
+
+# Edit
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_i = 1
+hook_add = '''
+  imap <C-h> <BS>
+  cmap <C-h> <BS>
+'''
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_map = [
+  ['n', '<Plug>Dsurround', '<Plug>Csurround', '<Plug>CSurround', '<Plug>Ysurround', '<Plug>YSurround', '<Plug>Yssurround', '<Plug>YSsurround'],
+  ['x', '<Plug>VSurround', '<Plug>VgSurround'],
+]
+hook_add = '''
+  nmap ds  <Plug>Dsurround
+  nmap cs  <Plug>Csurround
+  nmap cS  <Plug>CSurround
+  nmap ys  <Plug>Ysurround
+  nmap yS  <Plug>YSurround
+  nmap yss <Plug>Yssurround
+  nmap ySs <Plug>YSsurround
+  nmap ySS <Plug>YSsurround
+  xmap S   <Plug>VSurround
+  xmap gS  <Plug>VgSurround
+''' 
+[[plugins]]
+repo = 'tpope/vim-repeat'
+on_source = ['vim-surround', 'caw.vim']
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_map = '<Plug>'
+hook_add = '''
+  nmap n <Plug>(anzu-n-with-echo)
+  nmap N <Plug>(anzu-N-with-echo)
+'''
+[[plugins]]
+repo = 'kana/vim-operator-user'
+lazy = 1
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = '''
+  map _ <Plug>(operator-replace)
+'''
+[[plugins]]
+repo ='junegunn/vim-easy-align'
+on_map = [
+  ['v', '<Plug>(EasyAlign)'],
+]
+hook_add = '''
+  vmap <Enter> <Plug>(EasyAlign)
+'''
+# [plugins]
+# repo = 'matchit.zip'
+# lazy = 1
+# [[plugins]]
+# repo = 'vimtaku/hl_matchit.vim'
+# depends = 'matchit.zip'
+[[plugins]]
+repo = 'tyru/caw.vim'
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+lazy = 1
+hook_add = '''
+  let g:context_filetype#filetypes = {"php": [{"start": "<?", "end": "?>", "filetype": "php"}, {"start": "\\%^", "end": "\\%$", "filetype": "html"}, {"start": "<style.\\{-}>", "end": "<\\/style>", "filetype": "css"}, {"start": "<script.\\{-}>", "end": "<\\/script>", "filetype": "javascript"}]}
+'''
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+lazy = 1
+depends = 'context_filetype.vim'
+
+# FileType
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+[[plugins]]
+repo = 'kannokanno/previm'
+on_cmd = 'PrevimOpen'
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_source = 'previm'
+
+# VCS
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+on_cmd = 'Gina'
+hook_post_source = '''
+  call gina#custom#command#option('commit', '-v|--verbose')
+'''
+
+
