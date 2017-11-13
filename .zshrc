@@ -90,8 +90,20 @@ alias vi='/usr/local/bin/vim'
 # Search repositories in ghq
 alias repos='cd $(ghq root)/$(ghq list | peco)'
 
+# Search branch & git checkout
+function gco () {
+  git･checkout･`git･branch･|･peco･|･sed･-e･"s/\*･//g"･|･awk･"{print･\$1}"`
+}
+
 # Nodejs
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# Android Studio
+# Android SDK
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
 export PATH=$PATH:~/Library/Android/sdk/build-tools/25.0.3
+
+# Ruby
+[[･-d･~/.rbenv･･]]･&&･\
+･･export･PATH=${HOME}/.rbenv/bin:${PATH}･&&･\
+  eval "$(rbenv･init･-)"
+"$HOME/.rbenv/shims:$PATH:$HOME/bin"
