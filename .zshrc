@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ntsk/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -92,18 +92,11 @@ alias repos='cd $(ghq root)/$(ghq list | peco)'
 
 # Search branch & git checkout
 function gco () {
-  git･checkout･`git･branch･|･peco･|･sed･-e･"s/\*･//g"･|･awk･"{print･\$1}"`
+  git･checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`
 }
 
 # Nodejs
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# Android SDK
-export PATH=$PATH:~/Library/Android/sdk/platform-tools
-export PATH=$PATH:~/Library/Android/sdk/build-tools/25.0.3
-
 # Ruby
-[[･-d･~/.rbenv･･]]･&&･\
-･･export･PATH=${HOME}/.rbenv/bin:${PATH}･&&･\
-  eval "$(rbenv･init･-)"
 "$HOME/.rbenv/shims:$PATH:$HOME/bin"
