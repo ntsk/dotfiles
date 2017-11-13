@@ -91,12 +91,12 @@ alias vi='/usr/local/bin/vim'
 alias repos='cd $(ghq root)/$(ghq list | peco)'
 
 # Search branch & git checkout
-function gco () {
-  git･checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`
+function gcopeco () {
+  git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`
 }
 
 # Nodejs
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# Ruby
-"$HOME/.rbenv/shims:$PATH:$HOME/bin"
+# Android SDK
+export PATH=$PATH:~/Library/Android/sdk/platform-tools
