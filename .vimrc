@@ -88,6 +88,7 @@ if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || execu
   if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_cache_dir)
     call dein#add(s:dein_dir, {'rtp': ''})
+    call dein#add('scrooloose/nerdtree')
 
     call dein#load_toml(s:dein_toml)
 
@@ -417,6 +418,7 @@ command! -nargs=1 VimGrepDir execute 'vimgrep /\v<args>/j **'
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 nnoremap Y y$
 
