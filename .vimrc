@@ -89,6 +89,7 @@ if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || execu
     call dein#begin(s:dein_cache_dir)
     call dein#add(s:dein_dir, {'rtp': ''})
     call dein#add('scrooloose/nerdtree')
+    call dein#add('Shougo/unite.vim')
 
     call dein#load_toml(s:dein_toml)
 
