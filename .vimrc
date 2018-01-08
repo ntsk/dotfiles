@@ -78,7 +78,6 @@ else
   let &t_te .= "\e[0 q"
 endif
 
-
 if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || executable('xcopy'))
   let g:dein#install_process_timeout = 600
   let g:dein#install_progress_type = 'tabline'
@@ -90,6 +89,8 @@ if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || execu
     call dein#add(s:dein_dir, {'rtp': ''})
     call dein#add('scrooloose/nerdtree')
     call dein#add('Shougo/unite.vim')
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
 
     call dein#load_toml(s:dein_toml)
 
