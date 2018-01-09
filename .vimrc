@@ -88,6 +88,7 @@ if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || execu
     call dein#begin(s:dein_cache_dir)
     call dein#add(s:dein_dir, {'rtp': ''})
     call dein#add('scrooloose/nerdtree')
+    call dein#add('jistr/vim-nerdtree-tabs')
     call dein#add('Shougo/unite.vim')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
