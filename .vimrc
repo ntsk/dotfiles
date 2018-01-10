@@ -92,6 +92,7 @@ if isdirectory(s:dein_dir) && executable('git') && (executable('rsync') || execu
     call dein#add('Shougo/unite.vim')
     call dein#add('vim-airline/vim-airline')
     call dein#add('vim-airline/vim-airline-themes')
+    call dein#add('bronson/vim-trailing-whitespace')
 
     call dein#load_toml(s:dein_toml)
 
