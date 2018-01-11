@@ -100,3 +100,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Android SDK
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
+
+# rbenv
+PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
