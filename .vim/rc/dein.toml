@@ -194,4 +194,17 @@ hook_post_source = '''
   call gina#custom#command#option('commit', '-v|--verbose')
 '''
 
+[[plugins]]
+repo = 'scrooloose/nerdtree'
 
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
