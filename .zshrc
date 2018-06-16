@@ -105,5 +105,9 @@ export PATH=$PATH:~/Library/Android/sdk/platform-tools
 PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 # imagemagick
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
