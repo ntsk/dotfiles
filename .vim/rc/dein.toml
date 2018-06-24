@@ -214,3 +214,6 @@ repo = 'tpope/vim-rails'
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'vim-syntastic/syntastic'
