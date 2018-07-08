@@ -142,3 +142,10 @@ zle -N peco-find
 
 # bind keys
 bindkey '^f' peco-find
+
+# adb screenshot
+function screenshot() {
+  adb shell screencap -p /sdcard/screen.png
+  adb pull /sdcard/screen.png ~/Desktop
+  adb shell rm /sdcard/screen.png
+}
