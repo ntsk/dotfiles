@@ -146,6 +146,6 @@ bindkey '^f' peco-find
 # adb screenshot
 function screenshot() {
   adb shell screencap -p /sdcard/screen.png
-  adb pull /sdcard/screen.png ~/Desktop
+  adb pull /sdcard/screen.png ~/Desktop/$1
   adb shell rm /sdcard/screen.png
 }
