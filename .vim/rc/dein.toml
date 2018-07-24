@@ -220,3 +220,6 @@ repo = 'vim-syntastic/syntastic'
 
 [[plugins]]
 repo = 'ruby-formatter/rufo-vim'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
