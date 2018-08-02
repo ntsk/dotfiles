@@ -149,3 +149,7 @@ function screenshot() {
   adb pull /sdcard/screen.png ~/Desktop/$1
   adb shell rm /sdcard/screen.png
 }
+
+# go
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
