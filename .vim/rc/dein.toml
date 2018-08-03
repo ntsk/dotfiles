@@ -223,3 +223,6 @@ repo = 'ruby-formatter/rufo-vim'
 
 [[plugins]]
 repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
