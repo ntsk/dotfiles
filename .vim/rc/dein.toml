@@ -226,3 +226,6 @@ repo = 'slim-template/vim-slim'
 
 [[plugins]]
 repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
