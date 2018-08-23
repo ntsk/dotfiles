@@ -1,7 +1,3 @@
-# ColorScheme
-[[plugins]]
-repo ='w0ng/vim-hybrid'
-
 # Basic
 [[plugins]]
 repo ='vim-jp/vimdoc-ja'
