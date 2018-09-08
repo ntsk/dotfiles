@@ -9,6 +9,7 @@ curl https://raw.githubusercontent.com/kami-zh/prezto-prompt-simple/master/promp
 ```
 
 # Execute setup.sh
+Generate symbolic links to required directories.
 ```
 git clone https://github.com/NTSK/dotfiles.git
 chmod +x dotfiles/setup.sh
@@ -16,6 +17,7 @@ dotfiles/setup.sh
 ```
 
 # Uninstall Prezto
+If you want to uninstall prezto, please remove dotfiles.
 ```
 rm -rf ~/.zprezto ~/.zlogin ~/.zlogout ~/.zpreztorc ~/.zprofile ~/.zshenv ~/.zshrc
 ```
