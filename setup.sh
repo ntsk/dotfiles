@@ -1,8 +1,8 @@
  #!/bin/zsh
 
-VIM_FILES=(.vim .vimrc)
-echo "[Setup vim]"
-for file in ${VIM_FILES[@]}
+DOT_FILES=(.vim .vimrc .gitconfig)
+echo "[Generate symlink]"
+for file in ${DOT_FILES[@]}
   do
       ln -s $HOME/dotfiles/$file $HOME/$file
   done
