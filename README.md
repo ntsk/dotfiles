@@ -16,6 +16,14 @@ chmod +x dotfiles/setup.sh
 dotfiles/setup.sh
 ```
 
+# Other
+iTerm2 color scheme
+https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Molokai.itermcolors
+
+Powerline fonts
+https://github.com/powerline/fonts
+https://github.com/supermarin/powerline-fonts
+
 # Uninstall Prezto
 If you want to uninstall prezto, please remove dotfiles.
 ```
