@@ -1,0 +1,9 @@
+[user]
+	name = ntsk
+    email = ridha.h2a26@gmail.com
+[credential]
+	helper = osxkeychain
+[ghq]
+	root = /Users/ntsk/.ghq
+[core]
+	editor = vim -c \"set fenc=utf-8\"
