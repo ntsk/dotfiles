@@ -6,6 +6,13 @@ fi
 # Replace vi with vim
 alias vi='/usr/local/bin/vim'
 
+# History
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
 # Search repositories in ghq
 alias repos='cd $(ghq root)/$(ghq list | peco)'
 
