@@ -6,6 +6,9 @@ fi
 bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
+# NeoVim
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Replace vi with vim
 alias vi='/usr/local/bin/vim'
 
