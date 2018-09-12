@@ -12,3 +12,5 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 zstyle ':prezto:module:editor' key-bindings 'vi'
 zstyle ':prezto:module:prompt' theme 'simple'
+zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
+zstyle ':prezto:module:history-substring-search' color 'yes'
