@@ -5,10 +5,6 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'cespare/vim-toml'
 
-[[plugins]]
-repo = 'fishbullet/deoplete-ruby'
-on_ft = ['ruby']
-
 # Tools
 [[plugins]]
 repo = 'scrooloose/nerdtree'
