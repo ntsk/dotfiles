@@ -78,6 +78,3 @@ colorscheme molokai
 
 " Mappings
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-" Deoplete
-set completeopt+=noinsert
