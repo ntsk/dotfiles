@@ -12,6 +12,10 @@ hook_add = '''
   let g:deoplete#enable_at_startup = 1
 '''
 
+[[plugins]]
+repo = 'fishbullet/deoplete-ruby'
+on_ft = ['ruby']
+
 # Tools
 [[plugins]]
 repo = 'scrooloose/nerdtree'
