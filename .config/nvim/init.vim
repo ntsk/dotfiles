@@ -14,7 +14,7 @@ let $CACHE = empty($XDG_CACHE_HOME) ? expand('$HOME/.cache') : $XDG_CACHE_HOME
 let $CONFIG = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
 let $DATA = empty($XDG_DATA_HOME) ? expand('$HOME/.local/share') : $XDG_DATA_HOME
 
-let s:vimcache_dir   = expand('~/.cache/vim')
+let s:vimcache_dir   = expand('$HOME/.cache/nvim')
 let s:viminfo        = s:vimcache_dir.'/viminfo'
 let s:backup_dir     = s:vimcache_dir.'/backup'
 let s:swap_dir       = s:vimcache_dir.'/swap'
