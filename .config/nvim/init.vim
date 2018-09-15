@@ -9,9 +9,28 @@ augroup MyAutoCmd
     autocmd!
 augroup END
 
+" Dir
 let $CACHE = empty($XDG_CACHE_HOME) ? expand('$HOME/.cache') : $XDG_CACHE_HOME
 let $CONFIG = empty($XDG_CONFIG_HOME) ? expand('$HOME/.config') : $XDG_CONFIG_HOME
 let $DATA = empty($XDG_DATA_HOME) ? expand('$HOME/.local/share') : $XDG_DATA_HOME
+
+let s:vimcache_dir   = expand('~/.cache/vim')
+let s:viminfo        = s:vimcache_dir.'/viminfo'
+let s:backup_dir     = s:vimcache_dir.'/backup'
+let s:swap_dir       = s:vimcache_dir.'/swap'
+let s:undo_dir       = s:vimcache_dir.'/undo'
+let s:view_dir       = s:vimcache_dir.'/view'
+
+function! s:make_dir(dir) abort
+  if !isdirectory(a:dir)
+    call mkdir(a:dir, 'p')
+  endif
+endfunction
+call s:make_dir(s:vimcache_dir)
+call s:make_dir(s:backup_dir)
+call s:make_dir(s:swap_dir)
+call s:make_dir(s:undo_dir)
+call s:make_dir(s:view_dir)
 
 function! s:load(file) abort
     let s:path = expand('$CONFIG/nvim/rc/' . a:file . '.vim')
@@ -20,7 +39,6 @@ function! s:load(file) abort
         execute 'source' fnameescape(s:path)
     endif
 endfunction
-
 call s:load('plugins')
 
 " Options
@@ -37,10 +55,22 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-set noswapfile
-set nobackup
 set clipboard+=unnamed
 set noshowmode
+
+" Cache
+set backup
+execute 'set backupdir='.s:backup_dir
+
+set swapfile
+execute 'set directory='.s:swap_dir
+
+set undofile
+execute 'set undodir='.s:undo_dir
+
+set viewoptions-=options
+execute 'set viewdir='.s:view_dir
+execute 'set viminfo+=n'.s:viminfo
 
 " Color
 syntax on
