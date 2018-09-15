@@ -5,13 +5,6 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'cespare/vim-toml'
 
-# Completion
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-'''
-
 [[plugins]]
 repo = 'fishbullet/deoplete-ruby'
 on_ft = ['ruby']
