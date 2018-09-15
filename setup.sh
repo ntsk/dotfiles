@@ -19,4 +19,3 @@ if [ -e "$HOME/.zprezto/runcoms" ]; then
 else
   echo "Please install prezto before setup !"
 fi
-
