@@ -39,7 +39,11 @@ set autoindent
 set smartindent
 set noswapfile
 set nobackup
+set clipboard+=unnamed
 
 " Color
 syntax on
 colorscheme molokai
+
+" Mappings
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
