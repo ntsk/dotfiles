@@ -1,3 +1,4 @@
+# General
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -9,8 +10,31 @@ hook_add = '''
 [[plugins]]
 repo = 'cespare/vim-toml'
 
+# Tools
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+
+# Edit
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_i = 1
+
+# Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
 
+# Lang
 [[plugins]]
 repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'tpope/vim-rails'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
