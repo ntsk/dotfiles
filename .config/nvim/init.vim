@@ -40,6 +40,7 @@ set smartindent
 set noswapfile
 set nobackup
 set clipboard+=unnamed
+set noshowmode
 
 " Color
 syntax on
