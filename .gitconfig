@@ -6,4 +6,4 @@
 [ghq]
 	root = /Users/ntsk/.ghq
 [core]
-	editor = vim -c \"set fenc=utf-8\"
+	editor = nvim -c \"set fenc=utf-8\"
