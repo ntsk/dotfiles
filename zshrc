@@ -7,10 +7,10 @@ bindkey -M viins '^r' history-incremental-search-backward
 bindkey -M vicmd '^r' history-incremental-search-backward
 
 # NeoVim
-export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/dotfiles/.config"
 
 # Replace vi with vim
-alias vi='/usr/local/bin/vim'
+alias vi='/usr/local/bin/nvim'
 
 # History
 export HISTFILE=$HOME/.zsh_history
