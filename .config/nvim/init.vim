@@ -1,3 +1,7 @@
+if 0 | endif
+set encoding=utf-8
+scriptencoding utf-8
+
 augroup MyAutoCmd
     autocmd!
 augroup END
