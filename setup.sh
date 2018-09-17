@@ -1,6 +1,6 @@
  #!/bin/zsh
 
-DOT_FILES=(.vim .vimrc .gitconfig)
+DOT_FILES=(.config .gitconfig)
 echo "[Generate symlink]"
 for file in ${DOT_FILES[@]}
   do
