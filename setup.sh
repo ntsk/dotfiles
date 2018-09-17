@@ -1,6 +1,6 @@
  #!/bin/zsh
 
-DOT_FILES=(.config .gitconfig)
+DOT_FILES=(.config .gitconfig .tigrc)
 echo "[Generate symlink]"
 for file in ${DOT_FILES[@]}
   do
