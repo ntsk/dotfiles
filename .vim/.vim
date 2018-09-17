@@ -1,1 +1,0 @@
-/Users/ntsk/dotfiles/.vim
