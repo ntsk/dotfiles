@@ -78,3 +78,5 @@ colorscheme molokai
 
 " Mappings
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
