@@ -55,7 +55,8 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-set clipboard+=unnamed
+set clipboard+=unnamed,unnamedplus
+set mouse=a
 set noshowmode
 
 " Cache
