@@ -6,9 +6,5 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'fishbullet/deoplete-ruby'
-on_ft = ['ruby']
-
-[[plugins]]
 repo = 'haya14busa/dein-command.vim'
 on_cmd = 'Dein'

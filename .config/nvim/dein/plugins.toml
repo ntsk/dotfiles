@@ -39,3 +39,9 @@ repo = 'slim-template/vim-slim'
 
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'autowitch/hive.vim'
+
+[[plugins]]
+repo = 'shmup/vim-sql-syntax'

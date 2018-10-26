@@ -81,3 +81,10 @@ colorscheme molokai
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Syntax
+" for .hql files
+au BufNewFile,BufRead *.hql set filetype=hive expandtab
+
+" for .q files
+au BufNewFile,BufRead *.q set filetype=hive expandtab
