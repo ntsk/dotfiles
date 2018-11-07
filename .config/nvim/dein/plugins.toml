@@ -17,6 +17,9 @@ repo = 'jistr/vim-nerdtree-tabs'
 repo = 'cohama/lexima.vim'
 on_i = 1
 
+[[plugins]]
+repo = 'tpope/vim-surround'
+
 # Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
