@@ -49,7 +49,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
 
 # rbenv
-PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
 # jenv
