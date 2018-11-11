@@ -56,6 +56,10 @@ eval "$(rbenv init -)"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+
 # imagemagick
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
