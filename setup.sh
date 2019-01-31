@@ -1,5 +1,16 @@
- #!/bin/zsh
+#!/bin/zsh
 
+# Homebrew
+if test ! "$(command -v brew)"; then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+brew update
+brew upgrade
+brew bundle
+brew cleanup
+
+# Generate symlink
 DOT_FILES=(.config .gitconfig .tigrc .peco)
 echo "[Generate symlink]"
 for file in ${DOT_FILES[@]}
