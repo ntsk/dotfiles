@@ -20,6 +20,9 @@ on_i = 1
 [[plugins]]
 repo = 'tpope/vim-surround'
 
+[[plugins]]
+repo = 'ntpeters/vim-better-whitespace'
+
 # Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
