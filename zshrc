@@ -107,6 +107,13 @@ function screenshot() {
 alias installapk='find ./ -name *.apk | peco | xargs adb install -r'
 alias uninstallapk='adb shell pm list package | sed -e s/package:// | peco | xargs adb uninstall'
 
+# adb open app
+function openapp() {
+  package=`adb shell pm list package | sed -e s/package:// | peco`
+  default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
+  adb shell am start -n ${default_activity}
+}
+
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
