@@ -23,7 +23,7 @@ setopt EXTENDED_HISTORY
 alias repos='cd $(ghq root)/$(ghq list | peco)'
 
 # Search branch & git checkout
-function gcopeco () {
+function gcopeco() {
   git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`
 }
 
