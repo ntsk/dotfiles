@@ -103,6 +103,10 @@ function screenshot() {
   adb shell rm /sdcard/screen.png
 }
 
+# adb install app
+alias installapk='find ./ -name *.apk | peco | xargs adb install -r'
+alias uninstallapk='adb shell pm list package | sed -e s/package:// | peco | xargs adb uninstall'
+
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
