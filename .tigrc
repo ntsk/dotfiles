@@ -1,8 +1,7 @@
 set main-view = id date author commit-title:graph=yes,refs=yes
-set diff-highlight = true
 set line-graphics = utf-8
 set tab-size = 8
-set ignore-space = all 
+set ignore-space = all
 set split-view-width = 75%
 
 ## molokai
