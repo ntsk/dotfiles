@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 ZSH_FILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
-echo "[Setup zsh + prezto]"
 if [ -e "$HOME/.zprezto/runcoms" ]; then
   for file in ${ZSH_FILES[@]}
     do
