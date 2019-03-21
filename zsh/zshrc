@@ -1,4 +1,4 @@
-ZSH_HOME=$HOME/dotfiles/.zsh/rc
+ZSH_HOME=$HOME/dotfiles/zsh/rc
 . $ZSH_HOME/prezto.zsh
 . $ZSH_HOME/nvim.zsh
 . $ZSH_HOME/history.zsh
