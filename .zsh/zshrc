@@ -67,6 +67,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# gcloud required python2
+export CLOUDSDK_PYTHON=/Users/$USER/.pyenv/versions/2.7.15/bin/python2
+
 # imagemagick
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
