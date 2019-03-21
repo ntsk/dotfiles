@@ -28,7 +28,7 @@ if [ -e "$HOME/.zprezto/runcoms" ]; then
   for file in ${ZSH_FILES[@]}
     do
       rm -f $HOME/.zprezto/runcoms/$file
-      ln -s $HOME/dotfiles/$file $HOME/.zprezto/runcoms/$file
+      ln -s $HOME/dotfiles/.zsh/$file $HOME/.zprezto/runcoms/$file
       ln -s $HOME/.zprezto/runcoms/$file $HOME/.$file
     done
 else
