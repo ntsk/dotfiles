@@ -9,8 +9,10 @@ zstyle ':prezto:load' pmodule \
   'utility' \
   'completion' \
   'git' \
+  'prompt' \
   'syntax-highlighting' \
-  'prompt'
+  'autosuggestions'
+
 zstyle ':prezto:module:editor' key-bindings 'vi'
 zstyle ':prezto:module:prompt' theme 'simple'
 zstyle ':prezto:module:history-substring-search' case-sensitive 'yes'
