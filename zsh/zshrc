@@ -7,3 +7,4 @@ ZSH_HOME=$HOME/dotfiles/zsh/rc
 . $ZSH_HOME/android.zsh
 . $ZSH_HOME/buffer.zsh
 . $ZSH_HOME/ctags.zsh
+eval "$(rbenv init -)"
