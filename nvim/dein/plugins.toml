@@ -38,6 +38,9 @@ hook_add = '''
 repo = 'fatih/vim-go'
 
 [[plugins]]
+repo = 'udalov/kotlin-vim'
+
+[[plugins]]
 repo = 'tpope/vim-rails'
 
 [[plugins]]
