@@ -23,6 +23,9 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
 # Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
