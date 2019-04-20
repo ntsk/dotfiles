@@ -1,9 +1,14 @@
 [user]
   name = ntsk
   email = ridha.h2a26@gmail.com
+  signingkey = D3544EED2515FE11
 [credential]
   helper = osxkeychain
 [ghq]
   root = ~/.ghq
 [core]
   editor = nvim -c \"set fenc=utf-8\"
+[commit]
+  gpgsign = true
+[gpg]
+  program = gpg
