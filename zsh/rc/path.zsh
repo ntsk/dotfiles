@@ -28,8 +28,7 @@ export PATH=$HOME/flutter/bin:$PATH
 # Nodejs
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-# binutils
-export PATH=/usr/local/opt/binutils/bin:$PATH
-export LDFLAGS="-L/usr/local/opt/binutils/lib"
-export CPPFLAGS="-I/usr/local/opt/binutils/include"
-
+# llvm
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/llvm/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm/include"
