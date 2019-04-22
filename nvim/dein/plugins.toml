@@ -50,4 +50,7 @@ repo = 'leafgarland/typescript-vim'
 repo = 'autowitch/hive.vim'
 
 [[plugins]]
+repo= 'posva/vim-vue'
+
+[[plugins]]
 repo = 'shmup/vim-sql-syntax'
