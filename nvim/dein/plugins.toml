@@ -23,6 +23,9 @@ repo = 'tpope/vim-surround'
 [[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
 # Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
@@ -36,6 +39,9 @@ hook_add = '''
 # Lang
 [[plugins]]
 repo = 'fatih/vim-go'
+
+[[plugins]]
+repo = 'udalov/kotlin-vim'
 
 [[plugins]]
 repo = 'tpope/vim-rails'
