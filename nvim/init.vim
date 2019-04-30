@@ -7,6 +7,7 @@ language en_US
 
 augroup MyAutoCmd
     autocmd!
+    autocmd FileType vue syntax sync fromstart
 augroup END
 
 " Dir
