@@ -21,6 +21,13 @@ on_i = 1
 repo = 'tpope/vim-surround'
 
 [[plugins]]
+repo = 'alvan/vim-closetag'
+hook_add='''
+  let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml,*.vue'
+  let g:closetag_filetypes = 'html,xhtml,phtml,xml,vue'
+'''
+
+[[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
 [[plugins]]
