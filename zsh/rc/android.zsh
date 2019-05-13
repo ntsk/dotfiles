@@ -27,3 +27,8 @@ function adb-open() {
   default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
   adb shell am start -n ${default_activity}
 }
+
+# adb open link
+function adb-link() {
+  adb shell am start -W -a android.intent.action.VIEW -d $1
+}
