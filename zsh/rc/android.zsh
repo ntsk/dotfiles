@@ -32,3 +32,8 @@ function adb-open() {
 function adb-link() {
   adb shell am start -W -a android.intent.action.VIEW -d $1
 }
+
+function adb-clear() {
+  package=`adb shell pm list package | sed -e s/package:// | peco`
+  adb shell pm clear $package
+}
