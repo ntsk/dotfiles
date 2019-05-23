@@ -1,4 +1,3 @@
-# Android platform-tools
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:(find $ANDROID_HOME/build-tools -maxdepth 1 | sort | awk 'END{ print $NF }')
