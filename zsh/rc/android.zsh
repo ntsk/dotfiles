@@ -2,42 +2,44 @@
 export PATH=$PATH:~/Library/Android/sdk/platform-tools
 export PATH=$PATH:~/Library/Android/sdk/build-tools/28.0.3
 
-# adb screenshot
+# Obtain a screenshot from a device
 function adb-screen() {
   adb shell screencap -p /sdcard/screen.png
   adb pull /sdcard/screen.png ~/Desktop/$1
   adb shell rm /sdcard/screen.png
 }
 
-# adb install app
+# Install selected apk
 function adb-install() {
   apk=`find ./ -name *.apk | peco`
   package=`aapt dump badging ${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}'`
   adb install -r -d ${apk} && adb shell monkey -p ${package} -c android.intent.category.LAUNCHER 1
 }
 
-# adb uninstall app
+# Uninstall selected apk
 function adb-uninstall() {
   adb shell pm list package | sed -e s/package:// | peco | xargs adb uninstall
 }
 
-# adb open app
+# Open selected app
 function adb-open() {
   package=`adb shell pm list package | sed -e s/package:// | peco`
   default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
   adb shell am start -n ${default_activity}
 }
 
-# adb open link
+# Open URL
 function adb-link() {
   adb shell am start -W -a android.intent.action.VIEW -d $1
 }
 
+# Clear selected app cache
 function adb-clear() {
   package=`adb shell pm list package | sed -e s/package:// | peco`
   adb shell pm clear $package
 }
 
+# Record a video of the device display
 function adb-record() {
   DATE=`date '+%y%m%d%H%M%S'`
   FILE_NAME=record-${DATE}
