@@ -1,6 +1,7 @@
 # Android platform-tools
-export PATH=$PATH:~/Library/Android/sdk/platform-tools
-export PATH=$PATH:~/Library/Android/sdk/build-tools/28.0.3
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:(find $ANDROID_HOME/build-tools -maxdepth 1 | sort | awk 'END{ print $NF }')
 
 # Obtain a screenshot from a device
 function adb-screen() {
