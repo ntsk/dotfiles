@@ -8,6 +8,7 @@ language en_US.UTF-8
 augroup MyAutoCmd
     autocmd!
     autocmd FileType vue syntax sync fromstart
+    autocmd BufNewFile,BufRead Dangerfile setfiletype ruby
 augroup END
 
 " Dir
