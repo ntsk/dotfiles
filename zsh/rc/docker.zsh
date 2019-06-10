@@ -5,3 +5,7 @@ function docker-ps-names() {
 function docker-exec() {
   docker exec -it `docker-ps-names | peco | cut -f 1` /bin/bash
 }
+
+function docker-kill-all() {
+  docker kill $(docker ps -q)
+}
