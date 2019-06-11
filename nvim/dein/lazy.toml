@@ -13,7 +13,12 @@ on_cmd = 'Dein'
 repo = 'zchee/deoplete-clang'
 on_ft = ['c', 'cpp', 'cmake']
 hook_source = '''
-  let g:deoplete#sources#clang#libclang_path = system("llvm-config --prefix")[:-2] . '/lib/libclang.dylib'
+  if has('mac')
+    let g:deoplete#sources#clang#libclang_path = system("llvm-config --prefix")[:-2] . '/lib/libclang.dylib'
+  endif
+  if has('unix')
+    let g:deoplete#sources#clang#libclang_path = system("llvm-config --prefix")[:-2] . '/lib/libclang.so'
+  endif
   let g:deoplete#sources#clang#clang_header = system("llvm-config --prefix")[:-2] . '/lib/clang'
   let g:deoplete#sources#clang#sort_algo = 'priority'
   let g:deoplete#sources#clang#clang_complete_database="./build/"

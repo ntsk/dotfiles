@@ -1,1 +1,3 @@
-alias ctags="`brew --prefix`/bin/ctags"
+if [ "$(uname)" '==' 'Darwin' ]; then
+  alias ctags="`brew --prefix`/bin/ctags"
+fi

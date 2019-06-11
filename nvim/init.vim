@@ -3,11 +3,12 @@ if 0 | endif
 set encoding=utf-8
 set fileencodings=utf-8
 scriptencoding utf-8
-language en_US
+language en_US.UTF-8
 
 augroup MyAutoCmd
     autocmd!
     autocmd FileType vue syntax sync fromstart
+    autocmd BufNewFile,BufRead Dangerfile setfiletype ruby
 augroup END
 
 " Dir
