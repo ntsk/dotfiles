@@ -9,3 +9,7 @@ function docker-exec() {
 function docker-kill-all() {
   docker kill $(docker ps -q)
 }
+
+function docker-logs() {
+  docker logs `docker-ps-names | peco | cut -f 1` --follow
+}
