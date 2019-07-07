@@ -67,3 +67,12 @@ repo= 'posva/vim-vue'
 
 [[plugins]]
 repo = 'shmup/vim-sql-syntax'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'previm/previm'
+hook_add = '''
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+'''
