@@ -64,6 +64,9 @@ repo = 'autowitch/hive.vim'
 
 [[plugins]]
 repo= 'posva/vim-vue'
+hook_add='''
+  let g:vue_disable_pre_processors=1
+'''
 
 [[plugins]]
 repo = 'shmup/vim-sql-syntax'
