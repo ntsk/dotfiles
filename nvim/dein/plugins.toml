@@ -33,6 +33,9 @@ repo = 'ntpeters/vim-better-whitespace'
 [[plugins]]
 repo = 'mattn/emmet-vim'
 
+[[plugins]]
+repo = 'chrisbra/csv.vim'
+
 # Appearance
 [[plugins]]
 repo = 'tomasr/molokai'
