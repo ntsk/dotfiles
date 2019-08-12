@@ -34,7 +34,7 @@ repo = 'ntpeters/vim-better-whitespace'
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
-repo = 'chrisbra/csv.vim'
+repo = 'mechatroner/rainbow_csv'
 
 # Appearance
 [[plugins]]
