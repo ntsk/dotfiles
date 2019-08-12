@@ -2,6 +2,10 @@
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
+# goenv
+export PATH="$HOME/.goenv/bin:$PATH"
+eval "$(goenv init -)"
+
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"

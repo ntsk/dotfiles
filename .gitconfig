@@ -10,3 +10,5 @@
   gpgsign = true
 [gpg]
   program = gpg
+[color]
+	ui = auto

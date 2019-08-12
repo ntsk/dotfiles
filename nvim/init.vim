@@ -8,7 +8,9 @@ language en_US.UTF-8
 augroup MyAutoCmd
     autocmd!
     autocmd FileType vue syntax sync fromstart
-    autocmd BufNewFile,BufRead Dangerfile setfiletype ruby
+    autocmd BufNewFile,BufRead *.dig set filetype=yaml
+    autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
+    autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
 augroup END
 
 " Dir
