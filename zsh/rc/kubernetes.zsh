@@ -8,18 +8,3 @@ function kube-exec() {
   container=`kubectl get pods ${pod} -o jsonpath="{range .spec.containers[*]}{.name}{'\n'}{end}" | peco`
   kubectl exec -it ${pod} -c ${container} /bin/bash
 }
-
-function tov() {
-  sentence=''
-  if [ -t 0 ] ; then
-    sentence="$1"
-  else
-    sentence="$(cat -)"
-  fi
-
-  arr=$(echo $sentence | tr " " "\n")
-  for word in $arr
-  do
-    echo ${word}
-  done
-}
