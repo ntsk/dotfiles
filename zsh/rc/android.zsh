@@ -1,4 +1,9 @@
-export ANDROID_HOME=$HOME/Library/Android/sdk
+if [ "$(uname)" '==' 'Darwin' ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+else
+  export ANDROID_HOME=$HOME/Android/Sdk
+fi
+
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:`find $ANDROID_HOME/build-tools -maxdepth 1 | sort | awk 'END{ print $NF }'`
 
