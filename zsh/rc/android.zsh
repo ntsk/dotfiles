@@ -44,6 +44,18 @@ function adb-clear() {
   adb shell pm clear $package
 }
 
+# Show/Hide layout bounds
+function adb-layout() {
+  is_debug=`adb shell getprop debug.layout`
+  if $is_debug; then
+    adb shell setprop debug.layout false
+    echo "Hide layout bounds"
+  else
+    adb shell setprop debug.layout true
+    echo "Show layout bounds"
+  fi
+}
+
 # Record a video of the device display
 function adb-record() {
   DATE=`date '+%y%m%d%H%M%S'`
