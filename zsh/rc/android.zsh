@@ -56,6 +56,18 @@ function adb-layout() {
   fi
 }
 
+# Switch settings to keep activities
+function adb-keep-activity() {
+  is_kept=`adb shell settings get global always_finish_activities`
+  if [ $is_kept -eq 1 ]; then
+    adb shell settings put global always_finish_activities 0
+    echo "Keep activities"
+  else
+    adb shell settings put global always_finish_activities 1
+    echo "Don't keep activities"
+  fi
+}
+
 # Record a video of the device display
 function adb-record() {
   DATE=`date '+%y%m%d%H%M%S'`
