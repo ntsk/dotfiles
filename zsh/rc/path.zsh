@@ -20,6 +20,10 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+# nodenv
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"
+
 # gcloud required python2
 export CLOUDSDK_PYTHON=/Users/$USER/.pyenv/versions/2.7.15/bin/python2
 
@@ -28,9 +32,6 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # Flutter
 export PATH=$HOME/flutter/bin:$PATH
-
-# Nodejs
-export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
