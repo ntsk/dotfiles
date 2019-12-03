@@ -120,6 +120,15 @@ if executable('gopls')
         \ 'whitelist': ['go'],
         \ })
 endif
+
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_signs_error = {'text': '✗'}
