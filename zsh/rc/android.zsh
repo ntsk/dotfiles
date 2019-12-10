@@ -110,3 +110,19 @@ function adb-record() {
       *) ;;
   esac
 }
+
+alias bundletool="java -jar $ANDROID_HOME/bundletool-all-0.11.0.jar"
+
+function build-apks() {
+  aab=`find ./ -name *.aab | peco`
+  bundletool build-apks \
+    --bundle=$aab \
+    --output=app.apks \
+    --overwrite \
+    --connected-device
+}
+
+function install-apks() {
+  apks=`find ./ -name *.apks | peco`
+  bundletool install-apks --apks=$apks
+}
