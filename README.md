@@ -1,29 +1,39 @@
-# Setup
+# dotfiles
+
+## Install
 ```
-git clone https://github.com/NTSK/dotfiles.git
-chmod -R +x dotfiles/bin
+$ git clone https://github.com/NTSK/dotfiles.git
+$ chmod -R +x dotfiles/bin
 ```
 
-## Install Homebrew & Restore dependencies from Brewfile
+## Setup
+### 1. Install packages
+Setup package manager and Install packages from a list.
+
+#### Homebrew
 ```
-dotfiles/bin/install_homebrew.sh
+$ dotfiles/bin/install_homebrew.sh
 ```
 
-## Install & Uninstall Prezto
-Please install Prezto before generating symlink.
+#### Pacman
 ```
-dotfiles/bin/install_prezto.sh
-dotfiles/bin/uninstall_prezto.sh
+$ dotfiles/bin/install_pacman_packages.sh
 ```
 
-## Generate symlink
+### 2. Install Prezto
+Install [Prezto](https://github.com/sorin-ionescu/prezto) and [prezto-prompt-simple](https://github.com/kami-zh/prezto-prompt-simple) theme.
+```
+$ dotfiles/bin/install_prezto.sh
+```
+
+### 3 .Generate symlink
 Generate symbolic links to required directories.
 ```
-dotfiles/bin/dotfiles.symlink.sh
-dotfiles/bin/zsh.symlink.sh
+$ dotfiles/bin/dotfiles.symlink.sh
+$ dotfiles/bin/zsh.symlink.sh
 ```
 
-# Other
+## Color Schemes and Fonts
 - [iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Molokai.itermcolors)
 - [powerline/fonts](https://github.com/powerline/fonts)
 - [supermaring/powerline-fonts](https://github.com/supermarin/powerline-fonts)

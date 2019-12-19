@@ -1,4 +1,9 @@
-export ANDROID_HOME=$HOME/Library/Android/sdk
+if [ "$(uname)" '==' 'Darwin' ]; then
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+else
+  export ANDROID_HOME=$HOME/Android/Sdk
+fi
+
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:`find $ANDROID_HOME/build-tools -maxdepth 1 | sort | awk 'END{ print $NF }'`
 
@@ -37,6 +42,30 @@ function adb-link() {
 function adb-clear() {
   package=`adb shell pm list package | sed -e s/package:// | peco`
   adb shell pm clear $package
+}
+
+# Show/Hide layout bounds
+function adb-layout() {
+  is_debug=`adb shell getprop debug.layout`
+  if $is_debug; then
+    adb shell setprop debug.layout false
+    echo "Hide layout bounds"
+  else
+    adb shell setprop debug.layout true
+    echo "Show layout bounds"
+  fi
+}
+
+# Switch settings to keep activities
+function adb-keep-activity() {
+  is_kept=`adb shell settings get global always_finish_activities`
+  if [ $is_kept -eq 1 ]; then
+    adb shell settings put global always_finish_activities 0
+    echo "Keep activities"
+  else
+    adb shell settings put global always_finish_activities 1
+    echo "Don't keep activities"
+  fi
 }
 
 # Record a video of the device display
@@ -80,4 +109,44 @@ function adb-record() {
       "y" | "Y") ffmpeg -i ${YOUR_PATH}/${FILE_NAME}.mp4 -an -r 15 -pix_fmt rgb24 -f gif ${YOUR_PATH}/${FILE_NAME}.gif ;; # creating gif
       *) ;;
   esac
+}
+
+alias bundletool="java -jar $ANDROID_HOME/bundletool-all-0.11.0.jar"
+
+function build-apks() {
+  set -e
+
+  aab=`find ./ -name *.aab | peco`
+  ks=`find ./ -name *keystore | peco`
+  echo 'Please enter key alias.(default: androiddebugkey) [Press enter]'
+  printf '==> '
+  read ks_alias
+
+  if [ -z $ks_alias ]; then
+    ks_alias='androiddebugkey'
+  fi
+
+  echo 'Please enter key password.(default: android) [Press enter]'
+  printf '==> '
+  read ks_pass
+
+  if [ -z $ks_pass ]; then
+    ks_pass='android'
+  fi
+
+  bundletool build-apks \
+    --bundle=$aab \
+    --output=app.apks \
+    --overwrite \
+    --ks=$ks \
+    --ks-pass=pass:$ks_pass \
+    --ks-key-alias=$ks_alias \
+    --connected-device
+
+  echo "$(tput bold)SUCCESS"
+}
+
+function install-apks() {
+  apks=`find ./ -name *.apks | peco`
+  bundletool install-apks --apks=$apks
 }
