@@ -68,6 +68,7 @@ set smartindent
 set clipboard+=unnamed,unnamedplus
 set mouse=a
 set noshowmode
+set tags+=$HOME/tags
 
 " Cache
 set backup
