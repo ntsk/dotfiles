@@ -12,8 +12,8 @@ augroup MyAutoCmd
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
     autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
     autocmd BufNewFile,BufRead Fastfile set filetype=ruby
-    autocmd BufNewFile,BufRead *hql set filetype= hive expandtab
-    autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
+    autocmd BufNewFile,BufRead *hql set filetype= hive
+    autocmd BufNewFile,BufRead *.q set filetype=hive
 augroup END
 
 " Dir
@@ -59,9 +59,9 @@ set ignorecase
 set smartcase
 set scrolloff=5
 set display+=lastline
-set tabstop=4
-set shiftwidth=2
+set tabstop=2
 set softtabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
 set smartindent
