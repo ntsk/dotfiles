@@ -28,6 +28,9 @@ hook_add='''
 '''
 
 [[plugins]]
+repo = 'Yggdroot/indentLine'
+
+[[plugins]]
 repo = 'ntpeters/vim-better-whitespace'
 
 [[plugins]]
