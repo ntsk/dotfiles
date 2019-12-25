@@ -12,6 +12,8 @@ augroup MyAutoCmd
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
     autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
     autocmd BufNewFile,BufRead Fastfile set filetype=ruby
+    autocmd BufNewFile,BufRead *hql set filetype= hive expandtab
+    autocmd BufNewFile,BufRead *.q set filetype=hive expandtab
 augroup END
 
 " Dir
@@ -89,10 +91,3 @@ colorscheme molokai
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Syntax
-" for .hql files
-au BufNewFile,BufRead *.hql set filetype=hive expandtab
-
-" for .q files
-au BufNewFile,BufRead *.q set filetype=hive expandtab
