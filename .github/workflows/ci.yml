@@ -1,0 +1,11 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: setup_test
+    runs-on: macos-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
