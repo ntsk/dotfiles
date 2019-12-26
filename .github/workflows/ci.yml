@@ -9,5 +9,7 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@master
+    - name: make setup.sh executable
+      run: chmod -R +x ./bin
     - name: setup
       run: ./bin/setup.sh
