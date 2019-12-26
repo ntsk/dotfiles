@@ -12,4 +12,4 @@ jobs:
     - name: make setup.sh executable
       run: chmod -R +x ./bin
     - name: setup
-      run: ./bin/setup.sh
+      run: ./bin/setup_mac.sh
