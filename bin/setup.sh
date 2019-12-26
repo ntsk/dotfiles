@@ -3,7 +3,7 @@ set -euxo pipefail
 
 cd "$(dirname "$0")"
 
-sh ./bin/install_homebrew.sh
-sh ./bin/install_prezto.sh
-sh ./bin/dotfiles_symlink.sh
-sh ./bin/zsh_symlink.sh
+sh ./install_homebrew.sh
+sh ./install_prezto.sh
+sh ./dotfiles_symlink.sh
+sh ./zsh_symlink.sh
