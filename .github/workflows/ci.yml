@@ -1,0 +1,15 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: setup_test
+    runs-on: macos-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@master
+    - name: make setup.sh executable
+      run: chmod -R +x ./bin
+    - name: setup
+      run: ./bin/setup_mac.sh
