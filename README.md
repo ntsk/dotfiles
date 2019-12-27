@@ -1,4 +1,5 @@
 # dotfiles
+![](https://github.com/ntsk/dotfiles/workflows/CI/badge.svg)
 
 ## Install
 ```
