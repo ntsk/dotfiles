@@ -32,6 +32,7 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # Flutter
 export PATH=$HOME/flutter/bin:$PATH
+export PATH="$PATH:/usr/lib/dart/bin"
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
