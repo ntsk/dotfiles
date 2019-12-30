@@ -10,3 +10,5 @@ function gco() {
 function gshow() {
   git show `git log --oneline | peco | awk '{print $1}'`
 }
+
+alias glog="git log --graph --decorate --oneline"
