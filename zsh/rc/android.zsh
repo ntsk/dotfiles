@@ -115,8 +115,6 @@ function adb-record() {
 alias bundletool="java -jar $ANDROID_HOME/bundletool-all-0.11.0.jar"
 
 function build-apks() {
-  set -e
-
   aab=`find ./ -name *.aab | peco`
   ks=`find ./ -name *keystore | peco`
   echo 'Please enter key alias.(default: androiddebugkey) [Press enter]'
@@ -125,6 +123,7 @@ function build-apks() {
 
   if [ -z $ks_alias ]; then
     ks_alias='androiddebugkey'
+    echo 'Default value set.'
   fi
 
   echo 'Please enter key password.(default: android) [Press enter]'
@@ -133,6 +132,7 @@ function build-apks() {
 
   if [ -z $ks_pass ]; then
     ks_pass='android'
+    echo 'Default value set.'
   fi
 
   bundletool build-apks \
@@ -143,8 +143,6 @@ function build-apks() {
     --ks-pass=pass:$ks_pass \
     --ks-key-alias=$ks_alias \
     --connected-device
-
-  echo "$(tput bold)SUCCESS"
 }
 
 function install-apks() {
