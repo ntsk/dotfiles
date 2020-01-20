@@ -5,6 +5,7 @@ else
 fi
 
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/extras/google/instantapps
 export PATH=$PATH:`find $ANDROID_HOME/build-tools -maxdepth 1 | sort | awk 'END{ print $NF }'`
 
 # Obtain a screenshot from a device
