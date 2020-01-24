@@ -17,8 +17,8 @@ function adb-screen() {
 
 # Install selected apk
 function adb-install() {
-  apk=`find ./ -name *.apk | peco`
-  package=`aapt dump badging ${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}'`
+  local apk=`find ./ -name *.apk | peco`
+  local package=`aapt dump badging ${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}'`
   adb install -r -d ${apk} && adb shell monkey -p ${package} -c android.intent.category.LAUNCHER 1
 }
 
@@ -29,8 +29,8 @@ function adb-uninstall() {
 
 # Open selected app
 function adb-open() {
-  package=`adb shell pm list package | sed -e s/package:// | peco`
-  default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
+  local package=`adb shell pm list package | sed -e s/package:// | peco`
+  local default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
   adb shell am start -n ${default_activity}
 }
 
@@ -47,7 +47,7 @@ function adb-clear() {
 
 # Show/Hide layout bounds
 function adb-layout() {
-  is_debug=`adb shell getprop debug.layout`
+  local is_debug=`adb shell getprop debug.layout`
   if $is_debug; then
     adb shell setprop debug.layout false
     echo "Hide layout bounds"
@@ -59,7 +59,7 @@ function adb-layout() {
 
 # Switch settings to keep activities
 function adb-keep-activity() {
-  is_kept=`adb shell settings get global always_finish_activities`
+  local is_kept=`adb shell settings get global always_finish_activities`
   if [ $is_kept -eq 1 ]; then
     adb shell settings put global always_finish_activities 0
     echo "Keep activities"
@@ -76,7 +76,7 @@ function adb-record() {
   YOUR_PATH=~/Desktop
 
   adb shell screenrecord /sdcard/${FILE_NAME}.mp4 &
-  pid=`ps x | grep -v grep | grep "adb shell screenrecord" | awk '{ print $1 }'`
+  local pid=`ps x | grep -v grep | grep "adb shell screenrecord" | awk '{ print $1 }'`
 
   if [ -z "$pid" ]; then
     printf "Not running a screenrecord."
@@ -94,7 +94,7 @@ function adb-record() {
   kill -9 $pid # Finished the process of adb screenrecord
   while :
   do
-    alive=`adb shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }'`
+    local alive=`adb shell ps | grep screenrecord | grep -v grep | awk '{ print $9 }'`
     if [ -z "$alive" ]; then
         break
     fi
@@ -115,8 +115,9 @@ function adb-record() {
 alias bundletool="java -jar $ANDROID_HOME/bundletool-all-0.11.0.jar"
 
 function build-apks() {
-  aab=`find ./ -name *.aab | peco`
-  ks=`find ./ -name *keystore | peco`
+  local aab=`find ./ -name *.aab | peco`
+  local ks=`find ./ -name *keystore | peco`
+
   echo 'Please enter key alias.(default: androiddebugkey) [Press enter]'
   printf '==> '
   read ks_alias
@@ -146,6 +147,6 @@ function build-apks() {
 }
 
 function install-apks() {
-  apks=`find ./ -name *.apks | peco`
+  local apks=`find ./ -name *.apks | peco`
   bundletool install-apks --apks=$apks
 }
