@@ -32,8 +32,12 @@ export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
 # Flutter
 export PATH=$HOME/flutter/bin:$PATH
+export PATH="$PATH:/usr/lib/dart/bin"
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/llvm/lib"
 export CPPFLAGS="-I/usr/local/opt/llvm/include"
+
+# linuxbrew
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

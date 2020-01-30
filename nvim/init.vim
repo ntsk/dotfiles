@@ -11,6 +11,9 @@ augroup MyAutoCmd
     autocmd BufNewFile,BufRead *.dig set filetype=yaml
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
     autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
+    autocmd BufNewFile,BufRead Fastfile set filetype=ruby
+    autocmd BufNewFile,BufRead *hql set filetype= hive
+    autocmd BufNewFile,BufRead *.q set filetype=hive
 augroup END
 
 " Dir
@@ -56,15 +59,16 @@ set ignorecase
 set smartcase
 set scrolloff=5
 set display+=lastline
-set tabstop=4
-set shiftwidth=2
+set tabstop=2
 set softtabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
 set smartindent
 set clipboard+=unnamed,unnamedplus
 set mouse=a
 set noshowmode
+set tags+=$HOME/tags
 
 " Cache
 set backup
@@ -88,10 +92,3 @@ colorscheme molokai
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Syntax
-" for .hql files
-au BufNewFile,BufRead *.hql set filetype=hive expandtab
-
-" for .q files
-au BufNewFile,BufRead *.q set filetype=hive expandtab
