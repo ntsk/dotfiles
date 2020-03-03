@@ -12,7 +12,7 @@ augroup MyAutoCmd
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
     autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
     autocmd BufNewFile,BufRead Fastfile set filetype=ruby
-    autocmd BufNewFile,BufRead *hql set filetype= hive
+    autocmd BufNewFile,BufRead *hql set filetype=hive
     autocmd BufNewFile,BufRead *.q set filetype=hive
     " keep cursor's position after buffer switch
     autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
