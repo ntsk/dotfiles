@@ -99,6 +99,9 @@ repo = 'slim-template/vim-slim'
 repo = 'leafgarland/typescript-vim'
 
 [[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
+
+[[plugins]]
 repo = 'autowitch/hive.vim'
 
 [[plugins]]
