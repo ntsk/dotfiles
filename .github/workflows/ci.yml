@@ -11,5 +11,15 @@ jobs:
       uses: actions/checkout@master
     - name: make setup.sh executable
       run: chmod -R +x ./bin
+    - name: Workarounds (cleanup environment)
+    # refs. https://github.com/actions/virtual-environments/issues/1811
+      run: |
+        brew uninstall openssl@1.0.2t
+        rm -rf /usr/local/etc/openssl
+        rm -rf /usr/local/etc/openssl@1.1
+        rm -rf /usr/local/bin/aws
+        rm -rf /usr/local/bin/aws_completer
+        rm -rf /usr/local/bin/node
+        rm -rf /usr/local/bin/npm
     - name: setup
       run: ./bin/setup_mac.sh
