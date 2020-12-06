@@ -11,7 +11,5 @@ jobs:
       uses: actions/checkout@master
     - name: make setup.sh executable
       run: chmod -R +x ./bin
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
     - name: setup
       run: ./bin/setup_mac.sh
