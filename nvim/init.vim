@@ -10,6 +10,7 @@ augroup MyAutoCmd
     autocmd FileType vue syntax sync fromstart
     autocmd BufNewFile,BufRead *.dig set filetype=yaml
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
     autocmd BufNewFile,BufRead Dangerfile set filetype=ruby
     autocmd BufNewFile,BufRead Fastfile set filetype=ruby
     autocmd BufNewFile,BufRead *hql set filetype=hive
