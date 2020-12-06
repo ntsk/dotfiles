@@ -7,5 +7,5 @@ fi
 
 brew update
 brew upgrade
-brew bundle --file $HOME/dotfiles/Brewfile
+brew bundle --file ../Brewfile
 brew cleanup
