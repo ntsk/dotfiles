@@ -8,6 +8,8 @@ language en_US.UTF-8
 augroup MyAutoCmd
     autocmd!
     autocmd FileType vue syntax sync fromstart
+    " https://github.com/Yggdroot/indentLine/issues/172
+    autocmd Filetype json let g:indentLine_setConceal = 0
     autocmd BufNewFile,BufRead *.dig set filetype=yaml
     autocmd BufNewFile,BufRead *.vue setlocal filetype=vue
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
