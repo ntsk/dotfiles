@@ -121,3 +121,19 @@ repo = 'previm/previm'
 hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 '''
+
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+
+# ddc.vim
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
