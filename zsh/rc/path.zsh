@@ -44,3 +44,8 @@ export CPPFLAGS="-I/usr/local/opt/llvm/include"
 
 # linuxbrew
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
