@@ -125,6 +125,13 @@ hook_add = '''
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
+# lsp
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = 'williamboman/nvim-lsp-installer'
+
 # ddc.vim
 [[plugins]]
 repo = 'Shougo/ddc.vim'
@@ -137,3 +144,6 @@ repo = 'Shougo/ddc-matcher_head'
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
