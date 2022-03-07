@@ -52,3 +52,7 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# Homebrew for Apple Silicon
+if [[ "$(uname -m)" == "arm64" ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
