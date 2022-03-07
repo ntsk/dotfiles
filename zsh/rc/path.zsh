@@ -1,3 +1,6 @@
+# gpg
+export GPG_TTY=$(tty)
+
 # go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
