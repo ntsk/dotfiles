@@ -112,6 +112,11 @@ function adb-record() {
   esac
 }
 
+# input to EditText
+function adb-input() {
+  adb shell input text $1
+}
+
 alias bundletool="java -jar $ANDROID_HOME/bundletool-all-0.11.0.jar"
 
 function build-apks() {
