@@ -3,8 +3,7 @@
 
 ## Install
 ```
-$ git clone https://github.com/NTSK/dotfiles.git
-$ chmod -R +x dotfiles/bin
+$ curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | sh
 ```
 
 ## Setup
