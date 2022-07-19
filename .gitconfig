@@ -1,7 +1,7 @@
 [user]
   name = ntsk
-  email = ridha.h2a26@gmail.com
-  signingkey = D3544EED2515FE11
+  email = ntsk@ntsk.jp
+  signingkey = 9BE9091730B3EF4B
 [ghq]
   root = ~/.ghq
 [core]
