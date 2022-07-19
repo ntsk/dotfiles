@@ -19,7 +19,7 @@ function adb-screen() {
 function adb-install() {
   local apk=`find ./ -name *.apk | peco`
   local package=`aapt dump badging ${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}'`
-  adb install -r -d ${apk} && adb shell monkey -p ${package} -c android.intent.category.LAUNCHER 1
+  adb install -r -d -t ${apk} && adb shell monkey -p ${package} -c android.intent.category.LAUNCHER 1
 }
 
 # Uninstall selected apk
