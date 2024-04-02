@@ -39,22 +39,3 @@ repo = 'Shougo/ddc-sorter_rank'
 on_source = 'ddc.vim'
 
 
-# lsp
-[[plugins]]
-repo = 'neovim/nvim-lspconfig'
-on_event = 'BufEnter'
-hook_source= '''
-lua << EOF
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  server:setup(opts)
-  vim.cmd [[ do User LspAttachBuffers ]]
-end)
-EOF
-'''
-
-[[plugins]]
-repo = 'williamboman/nvim-lsp-installer'
-on_source = 'nvim-lspconfig'
-
