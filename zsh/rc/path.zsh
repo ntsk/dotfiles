@@ -30,9 +30,6 @@ export PATH="$HOME/.poetry/bin:$PATH"
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
-# gcloud required python2
-export CLOUDSDK_PYTHON=/Users/$USER/.pyenv/versions/2.7.15/bin/python2
-
 # imagemagick
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 
