@@ -125,3 +125,13 @@ hook_add = '''
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 
+# Lsp
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+
