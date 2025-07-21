@@ -3,7 +3,20 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  install-test:
+    name: curl_install_test
+    runs-on: macos-latest
+    steps:
+    - name: curl-based installation
+      run: |
+        rm -rf $HOME/dotfiles
+        curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | sh
+    - name: validate
+      run: |
+        test -d $HOME/dotfiles
+        echo "Curl-based installation test passed!"
+
+  setup-test:
     name: setup_test
     runs-on: macos-latest
     steps:

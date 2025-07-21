@@ -2,24 +2,17 @@
 
 set -eu
 
-THIS_DIR=$(
-  cd $(dirname $0)
-  pwd
-)
+DOTFILES_DIR=$HOME/dotfiles
 
-USER_REPO_ROOT=$HOME/go/src/github.com/ntsk
-
-mkdir -p $USER_REPO_ROOT
-if [ ! -d "$USER_REPO_ROOT/dotfiles" ]; then
+if [ ! -d "$DOTFILES_DIR" ]; then
   echo "Clone dotfile repository"
-  git clone git@github.com:ntsk/dotfiles.git $USER_REPO_ROOT/dotfiles
+  git clone git@github.com:ntsk/dotfiles.git $DOTFILES_DIR
 else
-  cd $USER_REPO_ROOT/dotfiles
+  cd $DOTFILES_DIR
   git pull origin master
 fi
 
-cd $USER_REPO_ROOT/dotfiles
-chmod -R +x dotfiles/bin
+cd $DOTFILES_DIR
+chmod -R +x bin
 
-cd $THIS_DIR
 echo "Complete"
