@@ -5,30 +5,11 @@ export GPG_TTY=$(tty)
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-# goenv
-export PATH="$HOME/.goenv/bin:$PATH"
-eval "$(goenv init -)"
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+# mise
+eval "$(mise activate zsh)"
 
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
-
-# nodenv
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
 
 # imagemagick
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
