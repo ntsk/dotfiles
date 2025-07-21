@@ -26,11 +26,11 @@ Install [Prezto](https://github.com/sorin-ionescu/prezto) and [prezto-prompt-sim
 $ dotfiles/bin/install_prezto.sh
 ```
 
-### 3 .Generate symlink
+### 3. Generate symlink
 Generate symbolic links to required directories.
 ```
-$ dotfiles/bin/dotfiles.symlink.sh
-$ dotfiles/bin/zsh.symlink.sh
+$ dotfiles/bin/dotfiles_symlink.sh
+$ dotfiles/bin/zsh_symlink.sh
 ```
 
 ## Color Schemes and Fonts
