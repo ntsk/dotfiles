@@ -6,7 +6,7 @@ DOTFILES_DIR=$HOME/dotfiles
 
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo "Clone dotfile repository"
-  git clone git@github.com:ntsk/dotfiles.git $DOTFILES_DIR
+  git clone https://github.com/ntsk/dotfiles.git $DOTFILES_DIR
 else
   cd $DOTFILES_DIR
   git pull origin master
