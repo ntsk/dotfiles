@@ -8,6 +8,7 @@ repo = 'Shougo/ddc.vim'
 on_event = 'InsertEnter'
 depends = ['denops.vim']
 hook_source = '''
+  call ddc#custom#patch_global('ui', 'native')
   call ddc#custom#patch_global('sources', ['lsp', 'around'])
   call ddc#custom#patch_global('sourceOptions', {
         \ '_': {
@@ -15,7 +16,7 @@ hook_source = '''
         \   'sorters': ['sorter_rank']},
         \ 'around': {
         \   'mark': 'around' },
-        \ 'nvim-lsp': {
+        \ 'lsp': {
         \   'mark': 'lsp',
         \   'forceCompletionPattern': '\.\w*|:\w*|->\w*' },
         \ })
@@ -36,6 +37,10 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-native'
 on_source = 'ddc.vim'
 
 
