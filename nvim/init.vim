@@ -100,3 +100,19 @@ lua << EOF
   require("mason").setup()
   require("mason-lspconfig").setup()
 EOF
+
+" Telescope
+lua << EOF
+  require('telescope').setup{
+    defaults = {
+      mappings = {
+        i = {
+          ["<C-n>"] = require('telescope.actions').move_selection_next,
+          ["<C-p>"] = require('telescope.actions').move_selection_previous,
+        },
+      },
+    },
+  }
+EOF
+
+nnoremap <silent><C-p> :lua require('telescope.builtin').find_files({ prompt_title = "Search Everywhere", find_command = {'rg', '--files', '--hidden', '--glob', '!.git/*'} })<CR>

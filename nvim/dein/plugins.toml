@@ -9,6 +9,14 @@ repo = 'cespare/vim-toml'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+# Telescope
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary.nvim']
+
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 
