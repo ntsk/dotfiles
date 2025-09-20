@@ -9,4 +9,3 @@ ZSH_HOME=$HOME/dotfiles/zsh/rc
 . $ZSH_HOME/ctags.zsh
 . $ZSH_HOME/docker.zsh
 . $ZSH_HOME/kubernetes.zsh
-. $ZSH_HOME/claude.zsh
