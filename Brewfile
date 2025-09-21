@@ -1,8 +1,4 @@
-tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
-tap "homebrew/core"
-tap "homebrew/services"
 tap "neovim/neovim"
 brew "bat"
 brew "ctags"
