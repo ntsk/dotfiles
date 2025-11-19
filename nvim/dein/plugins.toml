@@ -113,34 +113,7 @@ hook_add='''
 '''
 
 [[plugins]]
-repo = 'udalov/kotlin-vim'
-
-[[plugins]]
 repo = 'tpope/vim-rails'
-
-[[plugins]]
-repo = 'slim-template/vim-slim'
-
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-
-[[plugins]]
-repo = 'peitalin/vim-jsx-typescript'
-
-[[plugins]]
-repo = 'autowitch/hive.vim'
-
-[[plugins]]
-repo= 'posva/vim-vue'
-hook_add='''
-  let g:vue_disable_pre_processors=1
-'''
-
-[[plugins]]
-repo = 'shmup/vim-sql-syntax'
-
-[[plugins]]
-repo = 'tpope/vim-markdown'
 
 [[plugins]]
 repo = 'previm/previm'
