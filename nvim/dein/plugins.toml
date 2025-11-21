@@ -87,18 +87,28 @@ hook_add = '''
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
 build = ':TSUpdate'
+hook_add = '''
+autocmd BufNewFile,BufRead *.vcl set filetype=vcl
+autocmd FileType vcl TSBufEnable highlight
+
+function! s:setup_vcl_parser() abort
+lua << EOF
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.vcl = {
+  install_info = {
+    url = "https://github.com/ntsk/tree-sitter-vcl",
+    files = {"src/parser.c"},
+    branch = "main",
+  },
+  filetype = "vcl",
+}
+EOF
+endfunction
+
+autocmd VimEnter * call s:setup_vcl_parser()
+'''
 hook_post_source = '''
 lua << EOF
-  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-  parser_config.vcl = {
-    install_info = {
-      url = "https://github.com/ntsk/tree-sitter-vcl",
-      files = {"src/parser.c"},
-      branch = "main",
-    },
-    filetype = "vcl",
-  }
-
   require('nvim-treesitter.configs').setup {
     auto_install = true,
     highlight = {

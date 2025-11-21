@@ -17,7 +17,6 @@ augroup MyAutoCmd
     autocmd BufNewFile,BufRead Fastfile set filetype=ruby
     autocmd BufNewFile,BufRead *hql set filetype=hive
     autocmd BufNewFile,BufRead *.q set filetype=hive
-    autocmd BufNewFile,BufRead *.vcl set filetype=vcl
     " keep cursor's position after buffer switch
     autocmd BufRead * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
 augroup END
