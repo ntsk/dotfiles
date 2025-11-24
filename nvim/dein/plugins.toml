@@ -154,3 +154,47 @@ repo = 'williamboman/mason.nvim'
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
 
+# Music
+[[plugins]]
+repo = 'gruvw/strudel.nvim'
+build = 'npm ci'
+hook_add = '''
+lua << EOF
+local function setup()
+  if vim.g.strudel_did_setup then
+    return
+  end
+  vim.g.strudel_did_setup = true
+
+  require("strudel").setup({ update_on_save = true })
+
+  local strudel = require("strudel")
+
+  vim.keymap.set("n", "<leader>sl", strudel.launch, { desc = "Launch Strudel" })
+  vim.keymap.set("n", "<leader>sq", strudel.quit, { desc = "Quit Strudel" })
+  vim.keymap.set("n", "<leader>st", strudel.toggle, { desc = "Strudel Toggle Play/Stop" })
+  vim.keymap.set("n", "<leader>su", strudel.update, { desc = "Strudel Update" })
+  vim.keymap.set("n", "<leader>ss", strudel.stop, { desc = "Strudel Stop Playback" })
+  vim.keymap.set("n", "<leader>sb", strudel.set_buffer, { desc = "Strudel set current buffer" })
+  vim.keymap.set("n", "<leader>sx", strudel.execute, { desc = "Strudel set current buffer and update" })
+end
+
+local function launch()
+  setup()
+
+  local strudel = require("strudel")
+  if not strudel.is_launched() then
+    strudel.launch()
+  end
+end
+
+_G.StrudelLaunch = launch
+EOF
+
+augroup StrudelSetup
+  autocmd!
+  autocmd VimEnter * lua _G.StrudelLaunch()
+  autocmd BufRead,BufNewFile *.str,*.std lua _G.StrudelLaunch()
+augroup END
+'''
+
