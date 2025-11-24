@@ -89,6 +89,7 @@ repo = 'nvim-treesitter/nvim-treesitter'
 build = ':TSUpdate'
 hook_add = '''
 autocmd BufNewFile,BufRead *.vcl set filetype=vcl
+autocmd BufNewFile,BufRead *.vcl.j2 set filetype=vcl
 autocmd FileType vcl TSBufEnable highlight
 
 function! s:setup_vcl_parser() abort
