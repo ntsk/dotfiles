@@ -189,12 +189,13 @@ local function launch()
   end
 end
 
+_G.StrudelSetup = setup
 _G.StrudelLaunch = launch
 EOF
 
 augroup StrudelSetup
   autocmd!
-  autocmd VimEnter * lua _G.StrudelLaunch()
+  autocmd VimEnter * lua _G.StrudelSetup()
   autocmd BufRead,BufNewFile *.str,*.std lua _G.StrudelLaunch()
 augroup END
 '''
