@@ -8,10 +8,6 @@ echo "=== dotfiles setup ==="
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo "Cloning dotfiles..."
   git clone https://github.com/ntsk/dotfiles.git "$DOTFILES_DIR"
-else
-  echo "Updating dotfiles..."
-  cd "$DOTFILES_DIR"
-  git pull origin main
 fi
 
 cd "$DOTFILES_DIR"
