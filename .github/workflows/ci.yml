@@ -40,6 +40,10 @@ jobs:
         path: dotfiles
     - name: move to home
       run: mv dotfiles $HOME/dotfiles
+    - name: install nix
+      uses: cachix/install-nix-action@v31
+      with:
+        github_access_token: ${{ github.token }}
     - name: run install.sh
       run: $HOME/dotfiles/bin/install.sh
     - name: validate
