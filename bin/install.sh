@@ -11,7 +11,7 @@ if [ ! -d "$DOTFILES_DIR" ]; then
 else
   echo "Updating dotfiles..."
   cd "$DOTFILES_DIR"
-  git pull origin master
+  git pull origin main
 fi
 
 cd "$DOTFILES_DIR"

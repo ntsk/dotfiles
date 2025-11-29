@@ -3,7 +3,7 @@
 
 ## Install
 ```
-curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | bash
+curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/main/bin/install.sh | bash
 ```
 
 This script will:
