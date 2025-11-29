@@ -1,11 +1,15 @@
 return {
   {
-    "scrooloose/nerdtree",
-    cmd = "NERDTreeToggle",
+    "stevearc/oil.nvim",
+    lazy = false,
     keys = {
-      { "<C-e>", "<cmd>NERDTreeToggle<cr>", desc = "Toggle NERDTree" },
+      { "<C-e>", "<cmd>Oil<cr>", desc = "Open Oil" },
     },
-    dependencies = { "jistr/vim-nerdtree-tabs" },
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
   },
   {
     "cohama/lexima.vim",
