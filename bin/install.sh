@@ -27,7 +27,7 @@ case "$OS" in
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
-    brew bundle --file "$DOTFILES_DIR/Brewfile" --no-lock
+    brew bundle --file "$DOTFILES_DIR/Brewfile"
     ;;
   Linux)
     if command -v pacman &> /dev/null; then
