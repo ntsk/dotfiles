@@ -64,6 +64,18 @@ if [ -d "$HOME/.zprezto/runcoms" ]; then
 fi
 
 echo ""
+echo "=== Linking Nix applications ==="
+if [[ "$(uname -s)" == "Darwin" ]] && [ -d "$HOME/.nix-profile/Applications" ]; then
+  for app in "$HOME/.nix-profile/Applications/"*.app; do
+    app_name=$(basename "$app")
+    if [ ! -e "/Applications/$app_name" ]; then
+      ln -sf "$app" "/Applications/$app_name"
+      echo "Linked $app_name"
+    fi
+  done
+fi
+
+echo ""
 echo "=== Creating symlinks ==="
 mkdir -p "$HOME/.config"
 ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
