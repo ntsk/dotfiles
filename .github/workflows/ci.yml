@@ -12,10 +12,12 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v6
-    - name: make install.sh executable
-      run: chmod +x ./bin/install.sh
+      with:
+        path: dotfiles
+    - name: move to home
+      run: mv dotfiles $HOME/dotfiles
     - name: run install.sh
-      run: ./bin/install.sh
+      run: $HOME/dotfiles/bin/install.sh
     - name: validate
       run: |
         test -d $HOME/dotfiles
