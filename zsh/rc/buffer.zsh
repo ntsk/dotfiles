@@ -1,4 +1,4 @@
-# peco find directory
+# fzf find directory
 function find_buffer() {
   local current_buffer=$BUFFER
   local search_root=""
@@ -9,7 +9,7 @@ function find_buffer() {
   else
     search_root=`pwd`
   fi
-  file_path="$(find ${search_root} -maxdepth 5 | peco)"
+  file_path="$(find ${search_root} -maxdepth 5 | fzf)"
   BUFFER="${current_buffer} ${file_path}"
   CURSOR=$#BUFFER
   zle clear-screen

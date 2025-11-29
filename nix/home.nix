@@ -27,7 +27,6 @@
     mise
     neovim
     nerd-fonts.meslo-lg
-    peco
     ripgrep
     tig
     tmux
