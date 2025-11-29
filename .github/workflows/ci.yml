@@ -4,8 +4,11 @@ on: [push, pull_request]
 
 jobs:
   install-test:
-    name: install_test
-    runs-on: macos-latest
+    name: install_test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
     steps:
     - name: checkout
       uses: actions/checkout@v6
