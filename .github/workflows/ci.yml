@@ -4,34 +4,18 @@ on: [push, pull_request]
 
 jobs:
   install-test:
-    name: curl_install_test
-    runs-on: macos-latest
-    steps:
-    - name: curl-based installation
-      run: |
-        rm -rf $HOME/dotfiles
-        curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | sh
-    - name: validate
-      run: |
-        test -d $HOME/dotfiles
-        echo "Curl-based installation test passed!"
-
-  setup-test:
-    name: setup_test
+    name: install_test
     runs-on: macos-latest
     steps:
     - name: checkout
-      uses: actions/checkout@master
-    - name: make setup.sh executable
-      run: chmod -R +x ./bin
-    - name: Workarounds (cleanup environment)
-    # refs. https://github.com/actions/virtual-environments/issues/1811
+      uses: actions/checkout@v6
+    - name: make install.sh executable
+      run: chmod +x ./bin/install.sh
+    - name: run install.sh
+      run: ./bin/install.sh
+    - name: validate
       run: |
-        rm -rf /usr/local/etc/openssl
-        rm -rf /usr/local/etc/openssl@1.1
-        rm -rf /usr/local/bin/aws
-        rm -rf /usr/local/bin/aws_completer
-        rm -rf /usr/local/bin/node
-        rm -rf /usr/local/bin/npm
-    - name: setup
-      run: ./bin/setup_mac.sh
+        test -d $HOME/dotfiles
+        test -L $HOME/.gitconfig
+        test -L $HOME/.config/nvim
+        echo "Installation test passed!"
