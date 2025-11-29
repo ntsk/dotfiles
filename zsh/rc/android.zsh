@@ -17,19 +17,19 @@ function adb-screen() {
 
 # Install selected apk
 function adb-install() {
-  local apk=`find ./ -name *.apk | peco`
+  local apk=`find ./ -name *.apk | fzf`
   local package=`aapt dump badging ${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}'`
   adb install -r -d -t ${apk} && adb shell monkey -p ${package} -c android.intent.category.LAUNCHER 1
 }
 
 # Uninstall selected apk
 function adb-uninstall() {
-  adb shell pm list package | sed -e s/package:// | peco | xargs adb uninstall
+  adb shell pm list package | sed -e s/package:// | fzf | xargs adb uninstall
 }
 
 # Open selected app
 function adb-open() {
-  local package=`adb shell pm list package | sed -e s/package:// | peco`
+  local package=`adb shell pm list package | sed -e s/package:// | fzf`
   local default_activity=`adb shell pm dump ${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}'`
   adb shell am start -n ${default_activity}
 }
@@ -41,7 +41,7 @@ function adb-link() {
 
 # Clear selected app cache
 function adb-clear() {
-  package=`adb shell pm list package | sed -e s/package:// | peco`
+  package=`adb shell pm list package | sed -e s/package:// | fzf`
   adb shell pm clear $package
 }
 
@@ -120,8 +120,8 @@ function adb-input() {
 alias bundletool="java -jar $ANDROID_HOME/bundletool-all-1.17.1.jar"
 
 function build-apks() {
-  local aab=`find ./ -name *.aab | peco`
-  local ks=`find ./ -name *keystore | peco`
+  local aab=`find ./ -name *.aab | fzf`
+  local ks=`find ./ -name *keystore | fzf`
 
   echo 'Please enter key alias.(default: androiddebugkey) [Press enter]'
   printf '==> '
@@ -152,6 +152,6 @@ function build-apks() {
 }
 
 function install-apks() {
-  local apks=`find ./ -name *.apks | peco`
+  local apks=`find ./ -name *.apks | fzf`
   bundletool install-apks --apks=$apks
 }

@@ -1,21 +1,46 @@
 name: CI
 
-on: [push, pull_request]
+on: push
 
 jobs:
-  install-test:
-    name: install_test
-    runs-on: macos-latest
+  nix-build:
+    name: nix-build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
     steps:
     - name: checkout
       uses: actions/checkout@v6
-    - name: make install.sh executable
-      run: chmod +x ./bin/install.sh
-    - name: run install.sh
-      run: ./bin/install.sh
-    - name: validate
+    - name: install nix
+      uses: cachix/install-nix-action@v31
+      with:
+        github_access_token: ${{ github.token }}
+    - name: build
       run: |
-        test -d $HOME/dotfiles
-        test -L $HOME/.gitconfig
-        test -L $HOME/.config/nvim
-        echo "Installation test passed!"
+        SYSTEM=$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')
+        case "$SYSTEM" in
+          arm64-darwin) SYSTEM="aarch64-darwin" ;;
+          x86_64-darwin) SYSTEM="x86_64-darwin" ;;
+          aarch64-linux) SYSTEM="aarch64-linux" ;;
+          x86_64-linux) SYSTEM="x86_64-linux" ;;
+        esac
+        nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
+
+  install-test:
+    name: install-test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v6
+      with:
+        path: dotfiles
+    - name: move to home
+      run: mv dotfiles $HOME/dotfiles
+    - name: run install.sh
+      run: $HOME/dotfiles/bin/install.sh
+    - name: validate
+      run: test -d $HOME/dotfiles

@@ -3,7 +3,7 @@ function docker-ps-names() {
 }
 
 function docker-exec() {
-  docker exec -it `docker-ps-names | peco | cut -f 1` /bin/bash
+  docker exec -it `docker-ps-names | fzf | cut -f 1` /bin/bash
 }
 
 function docker-kill-all() {
@@ -11,9 +11,9 @@ function docker-kill-all() {
 }
 
 function docker-rmi() {
-  docker rmi `docker images | tail -n +2 | peco | awk '{print $3}'`
+  docker rmi `docker images | tail -n +2 | fzf | awk '{print $3}'`
 }
 
 function docker-logs() {
-  docker logs `docker-ps-names | peco | cut -f 1` --follow
+  docker logs `docker-ps-names | fzf | cut -f 1` --follow
 }
