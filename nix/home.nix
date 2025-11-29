@@ -11,12 +11,17 @@
 
   programs.home-manager.enable = true;
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     curl
+    docker
     ghq
+    google-cloud-sdk
     jq
     mise
     neovim
+    nerd-fonts.meslo-lg
     peco
     ripgrep
     tig

@@ -17,38 +17,38 @@ fi
 cd "$DOTFILES_DIR"
 chmod -R +x bin
 
-OS="$(uname -s)"
-case "$OS" in
-  Darwin)
-    echo ""
-    echo "=== Installing Homebrew packages ==="
-    if ! command -v brew &> /dev/null; then
-      echo "Installing Homebrew..."
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-    fi
-    brew bundle --file "$DOTFILES_DIR/Brewfile"
-    ;;
-  Linux)
-    if command -v pacman &> /dev/null; then
-      echo ""
-      echo "=== Installing pacman packages ==="
-      sudo pacman -S --needed --noconfirm $(comm -12 <(pacman -Slq | sort) <(sort "$DOTFILES_DIR/Pacfile"))
-    fi
-    ;;
-esac
+get_nix_system() {
+  local arch=$(uname -m)
+  local os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  case "$arch" in
+    arm64) arch="aarch64" ;;
+    x86_64) arch="x86_64" ;;
+  esac
+  echo "${arch}-${os}"
+}
+
+echo ""
+echo "=== Installing Nix ==="
+if ! command -v nix &> /dev/null; then
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+  echo "Nix installed. Please restart your shell and run this script again."
+  exit 0
+fi
+
+echo ""
+echo "=== Setting up Home Manager ==="
+SYSTEM=$(get_nix_system)
+nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 
 echo ""
 echo "=== Setting up Zsh (Prezto) ==="
 if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  echo "Cloning Prezto..."
   git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 else
   echo "Prezto already installed"
 fi
 
 if [ ! -f "$HOME/.zprezto/modules/prompt/functions/prompt_simple_setup" ]; then
-  echo "Installing prezto-prompt-simple..."
   curl -ksS https://raw.githubusercontent.com/kami-zh/prezto-prompt-simple/master/prompt_simple_setup > "$HOME/.zprezto/modules/prompt/functions/prompt_simple_setup"
 else
   echo "prezto-prompt-simple already installed"
@@ -61,14 +61,11 @@ if [ -d "$HOME/.zprezto/runcoms" ]; then
     ln -sf "$DOTFILES_DIR/zsh/$file" "$HOME/.zprezto/runcoms/$file"
     ln -sf "$HOME/.zprezto/runcoms/$file" "$HOME/.$file"
   done
-  echo "Zsh symlinks created"
 fi
 
 echo ""
 echo "=== Creating symlinks ==="
-
 mkdir -p "$HOME/.config"
-
 ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOTFILES_DIR/.tigrc" "$HOME/.tigrc"
 ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
@@ -83,8 +80,6 @@ if [ -d "$HOME/.claude" ]; then
 else
   ln -sf "$DOTFILES_DIR/.claude" "$HOME/.claude"
 fi
-
-echo "Symlinks created"
 
 echo ""
 echo "=== Setup complete ==="
