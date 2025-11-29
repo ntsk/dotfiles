@@ -17,7 +17,10 @@
     awscli2
     curl
     docker
+    fzf
+    gh
     ghq
+    git-lfs
     google-cloud-sdk
     jq
     mise
