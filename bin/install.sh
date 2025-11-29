@@ -30,9 +30,8 @@ get_nix_system() {
 echo ""
 echo "=== Installing Nix ==="
 if ! command -v nix &> /dev/null; then
-  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
-  echo "Nix installed. Please restart your shell and run this script again."
-  exit 0
+  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
 
 echo ""
