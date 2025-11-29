@@ -14,6 +14,7 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    awscli2
     curl
     docker
     ghq
