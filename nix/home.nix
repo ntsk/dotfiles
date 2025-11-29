@@ -17,6 +17,7 @@
     awscli2
     curl
     docker
+    fd
     fzf
     gh
     ghq
