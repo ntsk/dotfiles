@@ -26,3 +26,21 @@ jobs:
           x86_64-linux) SYSTEM="x86_64-linux" ;;
         esac
         nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
+
+  install-test:
+    name: install-test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v6
+      with:
+        path: dotfiles
+    - name: move to home
+      run: mv dotfiles $HOME/dotfiles
+    - name: run install.sh
+      run: $HOME/dotfiles/bin/install.sh
+    - name: validate
+      run: test -d $HOME/dotfiles
