@@ -1,3 +1,8 @@
+# Homebrew for Apple Silicon
+if [[ "$(uname -m)" == "arm64" ]]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
+
 # gpg
 export GPG_TTY=$(tty)
 
@@ -21,8 +26,3 @@ export PATH="$PATH:/usr/lib/dart/bin"
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
-
-# Homebrew for Apple Silicon
-if [[ "$(uname -m)" == "arm64" ]]; then
-  eval $(/opt/homebrew/bin/brew shellenv)
-fi
