@@ -96,5 +96,6 @@
       "mcp__github__get_pull_request_comments"
     ],
     "deny": []
-  }
+  },
+  "alwaysThinkingEnabled": true
 }
