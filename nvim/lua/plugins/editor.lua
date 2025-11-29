@@ -12,12 +12,54 @@ return {
     },
   },
   {
-    "cohama/lexima.vim",
-    event = "InsertEnter",
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    },
   },
   {
-    "tpope/vim-surround",
+    "numToStr/Comment.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
+    "tzachar/highlight-undo.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
+  {
+    "kylechui/nvim-surround",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {},
+  },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {},
+  },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+    },
   },
   {
     "alvan/vim-closetag",
