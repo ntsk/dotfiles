@@ -23,23 +23,8 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
-local function find_tmux()
-  local paths = {
-    "/opt/homebrew/bin/tmux",
-    "/usr/local/bin/tmux",
-    "/usr/bin/tmux",
-  }
-  for _, path in ipairs(paths) do
-    local f = io.open(path, "r")
-    if f then
-      f:close()
-      return path
-    end
-  end
-  return "tmux"
-end
-
-config.default_prog = { find_tmux(), "-u" }
+local home = os.getenv("HOME")
+config.default_prog = { home .. "/.nix-profile/bin/tmux", "-u" }
 config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = "Right" } },
