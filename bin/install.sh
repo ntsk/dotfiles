@@ -82,15 +82,15 @@ ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOTFILES_DIR/.tigrc" "$HOME/.tigrc"
 ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 ln -sf "$DOTFILES_DIR/.ctags" "$HOME/.ctags"
-ln -sf "$DOTFILES_DIR/peco" "$HOME/.peco"
-ln -sf "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
-ln -sf "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
+ln -sfn "$DOTFILES_DIR/peco" "$HOME/.peco"
+ln -sfn "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+ln -sfn "$DOTFILES_DIR/wezterm" "$HOME/.config/wezterm"
 
 if [ -d "$HOME/.claude" ]; then
   ln -sf "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   ln -sf "$DOTFILES_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
 else
-  ln -sf "$DOTFILES_DIR/.claude" "$HOME/.claude"
+  ln -sfn "$DOTFILES_DIR/.claude" "$HOME/.claude"
 fi
 
 echo ""
