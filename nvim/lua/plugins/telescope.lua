@@ -4,14 +4,34 @@ return {
     cmd = "Telescope",
     keys = {
       {
-        "<C-p>",
+        "<leader>ff",
         function()
           require("telescope.builtin").find_files({
-            prompt_title = "Search Everywhere",
             find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
           })
         end,
         desc = "Find Files",
+      },
+      {
+        "<leader>fg",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Live Grep",
+      },
+      {
+        "<leader>fb",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "Buffers",
+      },
+      {
+        "<leader>fh",
+        function()
+          require("telescope.builtin").help_tags()
+        end,
+        desc = "Help Tags",
       },
     },
     dependencies = { "nvim-lua/plenary.nvim" },
