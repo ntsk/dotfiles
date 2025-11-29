@@ -1,8 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  home.username = lib.mkDefault (builtins.getEnv "USER");
+  home.homeDirectory = lib.mkDefault (
+    if pkgs.stdenv.isDarwin
+    then "/Users/${config.home.username}"
+    else "/home/${config.home.username}"
+  );
   home.stateVersion = "24.05";
 
   programs.home-manager.enable = true;

@@ -11,26 +11,20 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in {
-      homeConfigurations = forAllSystems (system:
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      mkHomeConfig = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          username = builtins.getEnv "USER";
-          homeDirectory = if pkgs.stdenv.isDarwin
-            then "/Users/${username}"
-            else "/home/${username}";
         in home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            ./home.nix
-            {
-              home.username = username;
-              home.homeDirectory = homeDirectory;
-            }
-          ];
-        }
-      );
+          modules = [ ./home.nix ];
+        };
+    in {
+      homeConfigurations = {
+        "x86_64-linux" = mkHomeConfig "x86_64-linux";
+        "aarch64-linux" = mkHomeConfig "aarch64-linux";
+        "x86_64-darwin" = mkHomeConfig "x86_64-darwin";
+        "aarch64-darwin" = mkHomeConfig "aarch64-darwin";
+      };
     };
 }
