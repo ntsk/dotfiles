@@ -9,14 +9,6 @@ autocmd("FileType", {
   command = "syntax sync fromstart",
 })
 
-autocmd("FileType", {
-  group = mygroup,
-  pattern = "json",
-  callback = function()
-    vim.g.indentLine_setConceal = 0
-  end,
-})
-
 autocmd({ "BufNewFile", "BufRead" }, {
   group = mygroup,
   pattern = "*.dig",

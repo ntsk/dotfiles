@@ -23,6 +23,7 @@ opt.smartindent = true
 opt.clipboard:append({ "unnamed", "unnamedplus" })
 opt.mouse = "a"
 opt.showmode = false
+opt.conceallevel = 0
 opt.tags:append(vim.env.HOME .. "/tags")
 
 local cache_dir = vim.fn.expand("$HOME/.cache/nvim")

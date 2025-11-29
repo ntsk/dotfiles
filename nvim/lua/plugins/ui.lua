@@ -7,8 +7,10 @@ return {
     end,
   },
   {
-    "Yggdroot/indentLine",
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     event = { "BufReadPost", "BufNewFile" },
+    opts = {},
   },
   {
     "ntpeters/vim-better-whitespace",
