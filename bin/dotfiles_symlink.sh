@@ -5,7 +5,9 @@ ln -sf $HOME/dotfiles/.tigrc $HOME/.tigrc
 ln -sf $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -sf $HOME/dotfiles/.ctags $HOME/.ctags
 ln -sf $HOME/dotfiles/peco $HOME/.peco
-ln -sf $HOME/dotfiles/nvim $HOME/.config
+mkdir -p $HOME/.config
+ln -sf $HOME/dotfiles/nvim $HOME/.config/nvim
+ln -sf $HOME/dotfiles/wezterm $HOME/.config/wezterm
 
 if [ -d $HOME/.claude ]; then
   ln -sf $HOME/dotfiles/.claude/CLAUDE.md $HOME/.claude/CLAUDE.md
