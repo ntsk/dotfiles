@@ -14,6 +14,27 @@ return {
         filetype = "vcl",
       }
 
+      -- Auto-download highlight queries for custom tree-sitter parsers.
+      -- nvim-treesitter main branch supports `queries` option in install_info,
+      -- but v0.10.0 does not. Download them manually and add to runtimepath.
+      local queries_base = vim.fn.stdpath("data") .. "/treesitter-queries"
+      vim.opt.runtimepath:append(queries_base)
+
+      local function ensure_queries(lang, repo)
+        local queries_dir = queries_base .. "/queries/" .. lang
+        local highlights_file = queries_dir .. "/highlights.scm"
+        if vim.fn.filereadable(highlights_file) == 0 then
+          vim.fn.mkdir(queries_dir, "p")
+          vim.fn.system({
+            "curl", "-sL",
+            "https://raw.githubusercontent.com/" .. repo .. "/main/queries/highlights.scm",
+            "-o", highlights_file
+          })
+        end
+      end
+
+      ensure_queries("vcl", "ntsk/tree-sitter-vcl")
+
       require("nvim-treesitter.configs").setup({
         auto_install = true,
         highlight = {
