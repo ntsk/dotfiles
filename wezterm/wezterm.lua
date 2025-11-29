@@ -23,7 +23,23 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
-config.default_prog = { "/opt/homebrew/bin/tmux", "-u" }
+local function find_tmux()
+  local paths = {
+    "/opt/homebrew/bin/tmux",
+    "/usr/local/bin/tmux",
+    "/usr/bin/tmux",
+  }
+  for _, path in ipairs(paths) do
+    local f = io.open(path, "r")
+    if f then
+      f:close()
+      return path
+    end
+  end
+  return "tmux"
+end
+
+config.default_prog = { find_tmux(), "-u" }
 config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = "Right" } },
