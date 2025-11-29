@@ -12,8 +12,6 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    bat
-    ctags
     curl
     ghq
     jq
@@ -27,6 +25,5 @@
     wget
     wezterm
     zsh
-    zsh-history-substring-search
   ];
 }
