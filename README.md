@@ -3,37 +3,11 @@
 
 ## Install
 ```
-$ curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | sh
+curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/master/bin/install.sh | bash
 ```
 
-## Setup
-### 1. Install packages
-Setup package manager and Install packages from a list.
-
-#### Homebrew
-```
-$ dotfiles/bin/install_homebrew.sh
-```
-
-#### Pacman
-```
-$ dotfiles/bin/install_pacman_packages.sh
-```
-
-### 2. Install Prezto
-Install [Prezto](https://github.com/sorin-ionescu/prezto) and [prezto-prompt-simple](https://github.com/kami-zh/prezto-prompt-simple) theme.
-```
-$ dotfiles/bin/install_prezto.sh
-```
-
-### 3. Generate symlink
-Generate symbolic links to required directories.
-```
-$ dotfiles/bin/dotfiles_symlink.sh
-$ dotfiles/bin/zsh_symlink.sh
-```
-
-## Color Schemes and Fonts
-- [iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes/blob/master/schemes/Molokai.itermcolors)
-- [powerline/fonts](https://github.com/powerline/fonts)
-- [supermaring/powerline-fonts](https://github.com/supermarin/powerline-fonts)
+This script will:
+1. Clone or update the dotfiles repository
+2. Install packages (Homebrew on macOS, Pacman on Arch Linux)
+3. Install Prezto and prezto-prompt-simple theme
+4. Create symlinks for config files
