@@ -16,7 +16,7 @@ function select-history() {
     else
         tac="tail -r"
     fi
-    BUFFER=$(fc -l -n 1 | eval $tac | fzf --query "$LBUFFER")
+    BUFFER=$(fc -l -n 1 | eval $tac | fzf --exact --no-sort --query "^$LBUFFER")
     CURSOR=$#BUFFER
     zle -R -c
 }
