@@ -1,4 +1,5 @@
 ZSH_HOME=$HOME/dotfiles/zsh/rc
+. $ZSH_HOME/environment.zsh
 . $ZSH_HOME/keybind.zsh
 . $ZSH_HOME/directory.zsh
 . $ZSH_HOME/completion.zsh

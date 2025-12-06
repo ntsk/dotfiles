@@ -67,8 +67,6 @@
   };
 
   home.file.".zshrc".source = ../zsh/zshrc;
-  home.file.".zprofile".source = ../zsh/zprofile;
-  home.file.".zshenv".source = ../zsh/zshenv;
 
   xdg.configFile = {
     "nvim" = {
