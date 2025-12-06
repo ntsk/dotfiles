@@ -9,10 +9,9 @@ curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/main/bin/install.sh | b
 This script will:
 1. Clone or update the dotfiles repository
 2. Install Nix and Home Manager
-3. Install packages via Nix (macOS/Linux)
+3. Install packages and create config symlinks via Home Manager
 4. Install Prezto
-5. Create symlinks for config files
 
 ## Package Management
 
-Core tools (neovim, tmux, ripgrep, fzf, etc.) are managed with Nix for reproducible, cross-platform installation. Development languages and runtimes (Node.js, Python, Go, etc.) are managed with mise.
+Core tools (neovim, tmux, ripgrep, fzf, etc.) are managed with Nix for reproducible, cross-platform installation. Config files are managed via Home Manager's `home.file` and `xdg.configFile`. Development languages and runtimes (Node.js, Python, Go, etc.) are managed with mise.

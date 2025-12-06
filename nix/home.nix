@@ -18,10 +18,8 @@
     curl
     docker
     fd
-    fzf
     gh
     ghq
-    git-lfs
     google-cloud-sdk
     jq
     mise
@@ -35,4 +33,47 @@
     wezterm
     zsh
   ];
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+    signing = {
+      key = "9BE9091730B3EF4B";
+      signByDefault = true;
+    };
+    settings = {
+      user = {
+        name = "ntsk";
+        email = "ntsk@ntsk.jp";
+      };
+      init.defaultBranch = "main";
+      core.editor = "nvim -c 'set fenc=utf-8'";
+      gpg.program = "gpg";
+      color.ui = "auto";
+      ghq.root = "~/.ghq";
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.file.".claude" = {
+    source = ../.claude;
+    recursive = true;
+  };
+
+  xdg.configFile = {
+    "nvim" = {
+      source = ../nvim;
+      recursive = true;
+    };
+    "wezterm" = {
+      source = ../wezterm;
+      recursive = true;
+    };
+    "tig/config".source = ../.tigrc;
+    "tmux/tmux.conf".source = ../.tmux.conf;
+  };
 }
