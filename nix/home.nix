@@ -36,14 +36,16 @@
 
   programs.git = {
     enable = true;
-    userName = "ntsk";
-    userEmail = "ntsk@ntsk.jp";
+    lfs.enable = true;
     signing = {
       key = "9BE9091730B3EF4B";
       signByDefault = true;
     };
-    lfs.enable = true;
-    extraConfig = {
+    settings = {
+      user = {
+        name = "ntsk";
+        email = "ntsk@ntsk.jp";
+      };
       init.defaultBranch = "main";
       core.editor = "nvim -c 'set fenc=utf-8'";
       gpg.program = "gpg";
