@@ -10,7 +10,6 @@ This script will:
 1. Clone or update the dotfiles repository
 2. Install Nix and Home Manager
 3. Install packages and create config symlinks via Home Manager
-4. Install Prezto
 
 ## Package Management
 
