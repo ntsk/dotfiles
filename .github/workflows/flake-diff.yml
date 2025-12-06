@@ -1,0 +1,75 @@
+name: Flake Diff
+
+on:
+  pull_request:
+    paths:
+      - 'nix/flake.lock'
+
+permissions:
+  pull-requests: write
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v6
+
+      - name: Checkout base branch
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.base_ref }}
+          path: base
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ github.token }}
+
+      - name: Build base profile
+        run: |
+          nix build ./base/nix#homeConfigurations.x86_64-linux.activationPackage --impure -o base-profile
+
+      - name: Build PR profile
+        run: |
+          nix build ./nix#homeConfigurations.x86_64-linux.activationPackage --impure -o pr-profile
+
+      - name: Generate diff with nvd
+        id: nvd
+        run: |
+          nix run 'nixpkgs#nvd' -- diff ./base-profile ./pr-profile > diff.txt 2>&1 || echo "No changes detected" > diff.txt
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const diff = fs.readFileSync('diff.txt', 'utf8');
+            const body = `## 📦 Package Diff\n\n\`\`\`\n${diff}\n\`\`\``;
+            const prNumber = context.payload.pull_request.number;
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            });
+
+            const botComment = comments.find(c =>
+              c.user.type === 'Bot' && c.body.includes('Package Diff')
+            );
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: body
+              });
+            }
