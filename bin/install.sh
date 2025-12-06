@@ -73,7 +73,6 @@ fi
 echo ""
 echo "=== Creating symlinks ==="
 mkdir -p "$HOME/.config"
-ln -sf "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -sf "$DOTFILES_DIR/.tigrc" "$HOME/.tigrc"
 ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
 ln -sfn "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
