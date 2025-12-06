@@ -10,6 +10,5 @@ ZSH_HOME=$HOME/dotfiles/zsh/rc
 . $ZSH_HOME/path.zsh
 . $ZSH_HOME/android.zsh
 . $ZSH_HOME/buffer.zsh
-. $ZSH_HOME/ctags.zsh
 . $ZSH_HOME/docker.zsh
 . $ZSH_HOME/kubernetes.zsh
