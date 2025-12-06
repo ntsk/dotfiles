@@ -8,6 +8,8 @@
 
 ## Git Commit Messages
 
+- Keep commit messages simple by default (subject line only)
+- Only add a body with explanation when explicitly instructed
 - Limit the subject line to 50 characters
 - Capitalize the subject/description line
 - Do not end the subject line with a period
