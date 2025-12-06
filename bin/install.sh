@@ -36,29 +36,6 @@ SYSTEM=$(get_nix_system)
 nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 
 echo ""
-echo "=== Setting up Zsh (Prezto) ==="
-if [ ! -d "${ZDOTDIR:-$HOME}/.zprezto" ]; then
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-else
-  echo "Prezto already installed"
-fi
-
-if [ ! -f "$HOME/.zprezto/modules/prompt/functions/prompt_simple_setup" ]; then
-  curl -ksS https://raw.githubusercontent.com/kami-zh/prezto-prompt-simple/master/prompt_simple_setup > "$HOME/.zprezto/modules/prompt/functions/prompt_simple_setup"
-else
-  echo "prezto-prompt-simple already installed"
-fi
-
-ZSH_FILES=(zlogin zlogout zpreztorc zprofile zshenv zshrc)
-if [ -d "$HOME/.zprezto/runcoms" ]; then
-  for file in "${ZSH_FILES[@]}"; do
-    rm -f "$HOME/.zprezto/runcoms/$file"
-    ln -sf "$DOTFILES_DIR/zsh/$file" "$HOME/.zprezto/runcoms/$file"
-    ln -sf "$HOME/.zprezto/runcoms/$file" "$HOME/.$file"
-  done
-fi
-
-echo ""
 echo "=== Linking Nix applications ==="
 if [[ "$(uname -s)" == "Darwin" ]] && [ -d "$HOME/.nix-profile/Applications" ]; then
   for app in "$HOME/.nix-profile/Applications/"*.app; do

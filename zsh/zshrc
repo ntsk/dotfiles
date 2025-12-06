@@ -1,5 +1,9 @@
 ZSH_HOME=$HOME/dotfiles/zsh/rc
-. $ZSH_HOME/prezto.zsh
+. $ZSH_HOME/keybind.zsh
+. $ZSH_HOME/directory.zsh
+. $ZSH_HOME/completion.zsh
+. $ZSH_HOME/prompt.zsh
+. $ZSH_HOME/plugins.zsh
 . $ZSH_HOME/nvim.zsh
 . $ZSH_HOME/history.zsh
 . $ZSH_HOME/git.zsh

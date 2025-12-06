@@ -32,6 +32,8 @@
     wget
     wezterm
     zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
   ];
 
   programs.git = {
@@ -63,6 +65,10 @@
     source = ../.claude;
     recursive = true;
   };
+
+  home.file.".zshrc".source = ../zsh/zshrc;
+  home.file.".zprofile".source = ../zsh/zprofile;
+  home.file.".zshenv".source = ../zsh/zshenv;
 
   xdg.configFile = {
     "nvim" = {
