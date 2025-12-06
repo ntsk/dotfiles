@@ -18,10 +18,8 @@
     curl
     docker
     fd
-    fzf
     gh
     ghq
-    git-lfs
     google-cloud-sdk
     jq
     mise
@@ -35,4 +33,28 @@
     wezterm
     zsh
   ];
+
+  programs.git = {
+    enable = true;
+    userName = "ntsk";
+    userEmail = "ntsk@ntsk.jp";
+    signing = {
+      key = "9BE9091730B3EF4B";
+      signByDefault = true;
+    };
+    lfs.enable = true;
+    extraConfig = {
+      init.defaultBranch = "main";
+      core.editor = "nvim -c 'set fenc=utf-8'";
+      gpg.program = "gpg";
+      color.ui = "auto";
+      ghq.root = "~/.ghq";
+    };
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
 }
