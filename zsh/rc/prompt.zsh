@@ -7,14 +7,21 @@ autoload -Uz vcs_info
 # Git info configuration
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr '%F{3}+%f'
-zstyle ':vcs_info:git:*' unstagedstr '%F{3}+%f'
-zstyle ':vcs_info:git:*' formats ' %F{8}%b%f%c%u'
-zstyle ':vcs_info:git:*' actionformats ' %F{8}%b%f|%F{1}%a%f%c%u'
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:git:*' unstagedstr '+'
+zstyle ':vcs_info:git:*' formats '%c%u %F{8}%b%f'
+zstyle ':vcs_info:git:*' actionformats '%c%u %F{8}%b%f|%F{1}%a%f'
 
 # Update vcs_info before each prompt
 _update_vcs_info() {
   vcs_info
+  if [[ -n ${vcs_info_msg_0_} ]]; then
+    if [[ ${vcs_info_msg_0_} == +* ]]; then
+      vcs_info_msg_0_="%F{3}${vcs_info_msg_0_}%f"
+    else
+      vcs_info_msg_0_=" ${vcs_info_msg_0_}"
+    fi
+  fi
 }
 add-zsh-hook precmd _update_vcs_info
 
