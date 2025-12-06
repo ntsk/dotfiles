@@ -59,13 +59,9 @@
     enableZshIntegration = true;
   };
 
-  home.file = {
-    ".tigrc".source = ../.tigrc;
-    ".tmux.conf".source = ../.tmux.conf;
-    ".claude" = {
-      source = ../.claude;
-      recursive = true;
-    };
+  home.file.".claude" = {
+    source = ../.claude;
+    recursive = true;
   };
 
   xdg.configFile = {
@@ -77,5 +73,7 @@
       source = ../wezterm;
       recursive = true;
     };
+    "tig/config".source = ../.tigrc;
+    "tmux/tmux.conf".source = ../.tmux.conf;
   };
 }
