@@ -13,6 +13,14 @@ return {
         },
         filetype = "vcl",
       }
+      parser_config.strudel = {
+        install_info = {
+          url = "https://github.com/ntsk/tree-sitter-strudel",
+          files = { "src/parser.c" },
+          branch = "main",
+        },
+        filetype = "strudel",
+      }
 
       -- Auto-download highlight queries for custom tree-sitter parsers.
       -- nvim-treesitter main branch supports `queries` option in install_info,
@@ -34,6 +42,7 @@ return {
       end
 
       ensure_queries("vcl", "ntsk/tree-sitter-vcl")
+      ensure_queries("strudel", "ntsk/tree-sitter-strudel")
 
       require("nvim-treesitter.configs").setup({
         auto_install = true,
@@ -48,6 +57,12 @@ return {
 
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "vcl",
+        command = "TSBufEnable highlight",
+      })
+
+      vim.filetype.add({ extension = { str = "strudel", std = "strudel" } })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "strudel",
         command = "TSBufEnable highlight",
       })
     end,
