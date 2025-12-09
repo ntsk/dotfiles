@@ -23,6 +23,27 @@
       FXPreferredViewStyle = "Nlsv";
     };
 
+    CustomUserPreferences = {
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          "64" = {
+            enabled = true;
+            value = {
+              parameters = [ 32 49 262144 ];
+              type = "standard";
+            };
+          };
+          "60" = {
+            enabled = true;
+            value = {
+              parameters = [ 32 49 1048576 ];
+              type = "standard";
+            };
+          };
+        };
+      };
+    };
+
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
       AppleShowAllExtensions = true;
