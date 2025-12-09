@@ -4,6 +4,7 @@
   system.stateVersion = 5;
   system.primaryUser = username;
 
+  # Disable nix-darwin's Nix management to avoid conflict with Determinate Nixd
   nix.enable = false;
 
   users.users.${username} = {
