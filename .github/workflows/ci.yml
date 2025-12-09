@@ -42,5 +42,7 @@ jobs:
       run: mv dotfiles $HOME/dotfiles
     - name: run install.sh
       run: $HOME/dotfiles/bin/install.sh
+      env:
+        NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
     - name: validate
       run: test -d $HOME/dotfiles
