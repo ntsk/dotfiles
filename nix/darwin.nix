@@ -3,6 +3,8 @@
 {
   system.stateVersion = 5;
 
+  # Remap CapsLock to Ctrl via hidutil
+  # HID key codes: CapsLock=0x700000039, Left Ctrl=0x7000000E0
   launchd.user.agents.keyboard-remap = {
     serviceConfig = {
       ProgramArguments = [
