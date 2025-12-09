@@ -32,7 +32,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager.useUserPackages = false;
               home-manager.users.${username} = { pkgs, lib, ... }: {
                 imports = [ ./home.nix ];
                 home.username = lib.mkForce username;
