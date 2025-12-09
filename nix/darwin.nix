@@ -16,11 +16,11 @@
 
     finder = {
       AppleShowAllExtensions = true;
-      AppleShowAllFiles = false;
+      AppleShowAllFiles = true;
       ShowPathbar = true;
       ShowStatusBar = true;
       FXEnableExtensionChangeWarning = false;
-      FXPreferredViewStyle = "icnv";
+      FXPreferredViewStyle = "Nlsv";
     };
 
     NSGlobalDomain = {
