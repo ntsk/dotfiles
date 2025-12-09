@@ -38,10 +38,12 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "=== Setting up nix-darwin + Home Manager ==="
   # nix-darwin requires root, but flake.nix uses $USER to determine the username
   # --impure allows builtins.getEnv to read environment variables
-  sudo sh -c "export USER='$CURRENT_USER'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
+  # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
+  sudo sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
 else
   echo "=== Setting up Home Manager ==="
-  nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
+  # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
+  NIX_CONFIG="${NIX_CONFIG:-}" nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi
 
 echo ""
