@@ -31,20 +31,13 @@ if ! command -v nix &> /dev/null; then
 fi
 
 echo ""
-echo "=== Setting up Home Manager ==="
-SYSTEM=$(get_nix_system)
-nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
-
-echo ""
-echo "=== Linking Nix applications ==="
-if [[ "$(uname -s)" == "Darwin" ]] && [ -d "$HOME/.nix-profile/Applications" ]; then
-  for app in "$HOME/.nix-profile/Applications/"*.app; do
-    app_name=$(basename "$app")
-    if [ ! -e "/Applications/$app_name" ]; then
-      ln -sf "$app" "/Applications/$app_name"
-      echo "Linked $app_name"
-    fi
-  done
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  echo "=== Setting up nix-darwin + Home Manager ==="
+  nix run nix-darwin -- switch --flake "$DOTFILES_DIR/nix#ntsk"
+else
+  echo "=== Setting up Home Manager ==="
+  SYSTEM=$(get_nix_system)
+  nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi
 
 echo ""
