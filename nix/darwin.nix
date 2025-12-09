@@ -3,6 +3,18 @@
 {
   system.stateVersion = 5;
 
+  launchd.user.agents.keyboard-remap = {
+    serviceConfig = {
+      ProgramArguments = [
+        "/usr/bin/hidutil"
+        "property"
+        "--set"
+        ''{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x7000000E0}]}''
+      ];
+      RunAtLoad = true;
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   system.defaults = {
