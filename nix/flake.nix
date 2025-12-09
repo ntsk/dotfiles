@@ -33,7 +33,11 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = import ./home.nix;
+              home-manager.users.${username} = { pkgs, lib, ... }: {
+                imports = [ ./home.nix ];
+                home.username = lib.mkForce username;
+                home.homeDirectory = lib.mkForce "/Users/${username}";
+              };
             }
           ];
         };

@@ -33,7 +33,7 @@ fi
 echo ""
 if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "=== Setting up nix-darwin + Home Manager ==="
-  nix run nix-darwin -- switch --flake "$DOTFILES_DIR/nix#ntsk"
+  sudo -H nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake "$DOTFILES_DIR/nix#ntsk"
 else
   echo "=== Setting up Home Manager ==="
   SYSTEM=$(get_nix_system)
