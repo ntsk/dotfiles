@@ -16,6 +16,7 @@
   outputs = { nixpkgs, home-manager, nix-darwin, ... }:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      currentUser = builtins.getEnv "USER";
       mkHomeConfig = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -23,8 +24,10 @@
           inherit pkgs;
           modules = [ ./home.nix ];
         };
-      mkDarwinConfig = { system, username }:
-        nix-darwin.lib.darwinSystem {
+      mkDarwinConfig = system:
+        let
+          username = currentUser;
+        in nix-darwin.lib.darwinSystem {
           inherit system;
           specialArgs = { inherit username; };
           modules = [
@@ -49,10 +52,8 @@
         "aarch64-darwin" = mkHomeConfig "aarch64-darwin";
       };
       darwinConfigurations = {
-        "ntsk" = mkDarwinConfig {
-          system = "aarch64-darwin";
-          username = "ntsk";
-        };
+        "aarch64-darwin" = mkDarwinConfig "aarch64-darwin";
+        "x86_64-darwin" = mkDarwinConfig "x86_64-darwin";
       };
     };
 }

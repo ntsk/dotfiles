@@ -31,12 +31,16 @@ if ! command -v nix &> /dev/null; then
 fi
 
 echo ""
+SYSTEM=$(get_nix_system)
+# Save current user before sudo (sudo changes $USER to root)
+CURRENT_USER="$USER"
 if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "=== Setting up nix-darwin + Home Manager ==="
-  sudo -H nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake "$DOTFILES_DIR/nix#ntsk"
+  # nix-darwin requires root, but flake.nix uses $USER to determine the username
+  # --impure allows builtins.getEnv to read environment variables
+  sudo sh -c "export USER='$CURRENT_USER'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
 else
   echo "=== Setting up Home Manager ==="
-  SYSTEM=$(get_nix_system)
   nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi
 
