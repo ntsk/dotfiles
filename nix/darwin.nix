@@ -35,9 +35,15 @@
       FXPreferredViewStyle = "Nlsv";
     };
 
+    # Keyboard shortcuts
+    # parameters = [ ASCII, keycode, modifiers ]
+    # Space: ASCII=32, keycode=49
+    # Modifiers: Shift=131072, Ctrl=262144, Option=524288, Cmd=1048576
+    # Shortcut IDs: 64=Spotlight, 60=Input source (previous), 61=Input source (next)
     CustomUserPreferences = {
       "com.apple.symbolichotkeys" = {
         AppleSymbolicHotKeys = {
+          # Spotlight: Ctrl+Space
           "64" = {
             enabled = true;
             value = {
@@ -45,6 +51,7 @@
               type = "standard";
             };
           };
+          # Input source switch: Cmd+Space
           "60" = {
             enabled = true;
             value = {
