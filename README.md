@@ -8,8 +8,10 @@ curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/main/bin/install.sh | b
 
 This script will:
 1. Clone or update the dotfiles repository
-2. Install Nix and Home Manager
-3. Install packages and create config symlinks via Home Manager
+2. Install Nix
+3. Apply configuration:
+   - **macOS**: nix-darwin + Home Manager (system settings and user packages)
+   - **Linux**: Home Manager only (user packages)
 
 ## Package Management
 
