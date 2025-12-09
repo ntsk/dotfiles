@@ -31,20 +31,19 @@ if ! command -v nix &> /dev/null; then
 fi
 
 echo ""
-echo "=== Setting up Home Manager ==="
 SYSTEM=$(get_nix_system)
-nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
-
-echo ""
-echo "=== Linking Nix applications ==="
-if [[ "$(uname -s)" == "Darwin" ]] && [ -d "$HOME/.nix-profile/Applications" ]; then
-  for app in "$HOME/.nix-profile/Applications/"*.app; do
-    app_name=$(basename "$app")
-    if [ ! -e "/Applications/$app_name" ]; then
-      ln -sf "$app" "/Applications/$app_name"
-      echo "Linked $app_name"
-    fi
-  done
+# Save current user before sudo (sudo changes $USER to root)
+CURRENT_USER="$USER"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  echo "=== Setting up nix-darwin + Home Manager ==="
+  # nix-darwin requires root, but flake.nix uses $USER to determine the username
+  # --impure allows builtins.getEnv to read environment variables
+  # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
+  sudo sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
+else
+  echo "=== Setting up Home Manager ==="
+  # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
+  NIX_CONFIG="${NIX_CONFIG:-}" nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi
 
 echo ""
