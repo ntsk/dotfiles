@@ -4,6 +4,8 @@
   system.stateVersion = 5;
   system.primaryUser = username;
 
+  nix.enable = false;
+
   users.users.${username} = {
     name = username;
     home = "/Users/${username}";
