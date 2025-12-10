@@ -6,7 +6,14 @@ set -eu
 
 DOTFILES_DIR=$HOME/dotfiles
 
-echo "=== dotfiles setup ==="
+cat << 'EOF'
+       __      __  _____ __
+  ____/ /___  / /_/ __(_) /__  _____
+ / __  / __ \/ __/ /_/ / / _ \/ ___/
+/ /_/ / /_/ / /_/ __/ / /  __(__  )
+\__,_/\____/\__/_/ /_/_/\___/____/
+
+EOF
 
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo "Cloning dotfiles..."
@@ -34,7 +41,7 @@ get_nix_system() {
 }
 
 echo ""
-echo "=== Installing Nix ==="
+echo "🚀 Installing Nix..."
 if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 elif ! command -v nix &> /dev/null; then
@@ -47,16 +54,16 @@ SYSTEM=$(get_nix_system)
 # Save current user before sudo (sudo changes $USER to root)
 CURRENT_USER="$USER"
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  echo "=== Setting up nix-darwin + Home Manager ==="
+  echo "🚀 Setting up nix-darwin + Home Manager..."
   # nix-darwin requires root, but flake.nix uses $USER to determine the username
   # --impure allows builtins.getEnv to read environment variables
   # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
   sudo -n sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
 else
-  echo "=== Setting up Home Manager ==="
+  echo "🚀 Setting up Home Manager..."
   # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
   NIX_CONFIG="${NIX_CONFIG:-}" nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi
 
 echo ""
-echo "=== Setup complete ==="
+echo "🚀 Setup complete!"
