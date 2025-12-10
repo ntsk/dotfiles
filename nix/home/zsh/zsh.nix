@@ -8,7 +8,6 @@
     ./rc/history.nix
     ./rc/prompt.nix
     ./rc/buffer.nix
-    ./rc/nvim.nix
     ./rc/git.nix
     ./rc/docker.nix
     ./rc/k8s.nix
