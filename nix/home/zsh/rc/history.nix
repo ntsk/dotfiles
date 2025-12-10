@@ -11,6 +11,7 @@
     };
 
     initContent = ''
+      # Search history
       function select-history() {
         local tac
         if which tac > /dev/null; then

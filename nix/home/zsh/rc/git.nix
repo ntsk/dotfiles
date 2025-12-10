@@ -2,18 +2,23 @@
 
 {
   programs.zsh.shellAliases = {
+    # Search repositories in ghq
+    repos = ''cd $(ghq root)/$(ghq list | fzf)'';
     glog = "git log --graph --decorate --oneline";
   };
 
   programs.zsh.initContent = ''
+    # Search branch & git checkout
     function gco() {
       git checkout $(git branch | fzf | sed -e "s/\* //g" | awk "{print \$1}")
     }
 
+    # Search commit & git show
     function gshow() {
       git show $(git log --oneline | fzf | awk '{print $1}')
     }
 
+    # Create branches from git tags
     function checkout_all_tags() {
       git fetch --tags --quiet
       current_branch=$(git branch --show-current)
