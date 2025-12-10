@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 
 {
+  imports = [
+    ./zsh/zsh.nix
+  ];
+
   home.username = lib.mkDefault (builtins.getEnv "USER");
   home.homeDirectory = lib.mkDefault (
     if pkgs.stdenv.isDarwin
@@ -14,7 +18,9 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    android-tools
     awscli2
+    bundletool
     curl
     docker
     fd
@@ -31,9 +37,6 @@
     vim
     wget
     wezterm
-    zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
   ];
 
   programs.git = {
@@ -62,20 +65,17 @@
   };
 
   home.file.".claude" = {
-    source = ../.claude;
+    source = ../../.claude;
     recursive = true;
   };
 
-  home.file.".zshenv".source = ../zsh/zshenv;
-  home.file.".zshrc".source = ../zsh/zshrc;
-
   xdg.configFile = {
     "wezterm" = {
-      source = ../wezterm;
+      source = ../../wezterm;
       recursive = true;
     };
-    "tig/config".source = ../.tigrc;
-    "tmux/tmux.conf".source = ../.tmux.conf;
+    "tig/config".source = ../../.tigrc;
+    "tmux/tmux.conf".source = ../../.tmux.conf;
   };
 
   home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
