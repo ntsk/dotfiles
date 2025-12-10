@@ -22,7 +22,7 @@
           pkgs = nixpkgs.legacyPackages.${system};
         in home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [ ./home.nix ];
+          modules = [ ./home/home.nix ];
         };
       mkDarwinConfig = system:
         let
@@ -31,13 +31,13 @@
           inherit system;
           specialArgs = { inherit username; };
           modules = [
-            ./darwin.nix
+            ./darwin/darwin.nix
             home-manager.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.users.${username} = { pkgs, lib, ... }: {
-                imports = [ ./home.nix ];
+                imports = [ ./home/home.nix ];
                 home.username = lib.mkForce username;
                 home.homeDirectory = lib.mkForce "/Users/${username}";
               };
