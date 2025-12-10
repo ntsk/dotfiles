@@ -18,6 +18,7 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    android-tools
     awscli2
     bundletool
     curl

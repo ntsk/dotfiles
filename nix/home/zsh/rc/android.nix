@@ -8,7 +8,6 @@
       export ANDROID_HOME=$HOME/Android/Sdk
     fi
 
-    export PATH=$PATH:$ANDROID_HOME/platform-tools
     export PATH=$PATH:$ANDROID_HOME/extras/google/instantapps
     export PATH=$PATH:$(find $ANDROID_HOME/build-tools -maxdepth 1 2>/dev/null | sort | awk 'END{ print $NF }')
 
