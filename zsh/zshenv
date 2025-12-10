@@ -1,0 +1,10 @@
+# Environment variables and PATH settings
+# This file is loaded for all shell types (interactive, non-interactive, login, non-login)
+
+ZSH_ENV_HOME=$HOME/dotfiles/zsh/env
+
+. $ZSH_ENV_HOME/locale.zsh
+. $ZSH_ENV_HOME/editor.zsh
+. $ZSH_ENV_HOME/browser.zsh
+. $ZSH_ENV_HOME/gpg.zsh
+. $ZSH_ENV_HOME/path.zsh
