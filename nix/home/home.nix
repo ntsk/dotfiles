@@ -19,6 +19,7 @@
 
   home.packages = with pkgs; [
     awscli2
+    bundletool
     curl
     docker
     fd

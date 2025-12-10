@@ -1,10 +1,6 @@
 { ... }:
 
 {
-  programs.zsh.shellAliases = {
-    bundletool = "java -jar $ANDROID_HOME/bundletool-all-1.17.1.jar";
-  };
-
   programs.zsh.initContent = ''
     if [ "$(uname)" '==' 'Darwin' ]; then
       export ANDROID_HOME=$HOME/Library/Android/sdk
