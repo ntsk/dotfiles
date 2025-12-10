@@ -24,10 +24,8 @@
           inherit pkgs;
           modules = [ ./home/home.nix ];
         };
-      mkDarwinConfig = system:
-        let
-          username = currentUser;
-        in nix-darwin.lib.darwinSystem {
+      mkDarwinConfig = system: username:
+        nix-darwin.lib.darwinSystem {
           inherit system;
           specialArgs = { inherit username; };
           modules = [
@@ -52,8 +50,8 @@
         "aarch64-darwin" = mkHomeConfig "aarch64-darwin";
       };
       darwinConfigurations = {
-        "aarch64-darwin" = mkDarwinConfig "aarch64-darwin";
-        "x86_64-darwin" = mkDarwinConfig "x86_64-darwin";
+        "aarch64-darwin" = mkDarwinConfig "aarch64-darwin" currentUser;
+        "x86_64-darwin" = mkDarwinConfig "x86_64-darwin" currentUser;
       };
     };
 }
