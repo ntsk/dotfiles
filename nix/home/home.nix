@@ -3,6 +3,7 @@
 {
   imports = [
     ./zsh/zsh.nix
+    ./nvim/nvim.nix
   ];
 
   home.username = lib.mkDefault (builtins.getEnv "USER");
@@ -29,12 +30,10 @@
     google-cloud-sdk
     jq
     mise
-    neovim
     nerd-fonts.meslo-lg
     ripgrep
     tig
     tmux
-    vim
     wget
     wezterm
   ];
@@ -77,15 +76,4 @@
     "tig/config".source = ../../.tigrc;
     "tmux/tmux.conf".source = ../../.tmux.conf;
   };
-
-  home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    NVIM_CONFIG_DIR="${config.xdg.configHome}/nvim"
-    DOTFILES_NVIM_DIR="${config.home.homeDirectory}/dotfiles/nvim"
-    if [ -L "$NVIM_CONFIG_DIR" ]; then
-      rm "$NVIM_CONFIG_DIR"
-    elif [ -d "$NVIM_CONFIG_DIR" ]; then
-      rm -rf "$NVIM_CONFIG_DIR"
-    fi
-    ln -s "$DOTFILES_NVIM_DIR" "$NVIM_CONFIG_DIR"
-  '';
 }
