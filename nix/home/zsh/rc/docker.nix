@@ -1,5 +1,6 @@
 { ... }:
 
+# Docker helper functions
 {
   programs.zsh.initContent = ''
     function docker-ps-names() {

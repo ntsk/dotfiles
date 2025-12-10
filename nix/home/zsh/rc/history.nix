@@ -1,5 +1,6 @@
 { config, ... }:
 
+# History settings and search function
 {
   programs.zsh = {
     history = {

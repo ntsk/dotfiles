@@ -1,5 +1,6 @@
 { ... }:
 
+# Directory navigation options
 {
   programs.zsh.initContent = ''
     setopt AUTO_CD

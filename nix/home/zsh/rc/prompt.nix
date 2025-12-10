@@ -1,5 +1,6 @@
 { ... }:
 
+# Prompt and vcs_info configuration
 {
   programs.zsh.initContent = ''
     # Enable parameter expansion in prompts

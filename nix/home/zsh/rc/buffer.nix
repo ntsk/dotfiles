@@ -1,5 +1,6 @@
 { ... }:
 
+# Buffer manipulation with fzf
 {
   programs.zsh.initContent = ''
     # Find directory with fzf

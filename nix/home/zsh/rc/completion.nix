@@ -1,5 +1,6 @@
 { ... }:
 
+# Zsh completion settings
 {
   programs.zsh.completionInit = ''
     autoload -Uz compinit && compinit

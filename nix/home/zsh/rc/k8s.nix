@@ -1,5 +1,6 @@
 { ... }:
 
+# Kubernetes helper functions
 {
   programs.zsh.initContent = ''
     function kube-context() {

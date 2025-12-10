@@ -1,5 +1,6 @@
 { ... }:
 
+# Git aliases and helper functions
 {
   programs.zsh.shellAliases = {
     repos = ''cd $(ghq root)/$(ghq list | fzf)'';
