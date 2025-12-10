@@ -1,5 +1,7 @@
 { ... }:
 
+# android-tools (adb, fastboot) and bundletool are managed by nix
+# Other SDK components (aapt, etc.) require Android Studio SDK installation
 {
   programs.zsh.initContent = ''
     if [ "$(uname)" '==' 'Darwin' ]; then
