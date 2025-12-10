@@ -16,37 +16,44 @@
     export PATH=$PATH:$ANDROID_HOME/extras/google/instantapps
     export PATH=$PATH:$(find $ANDROID_HOME/build-tools -maxdepth 1 2>/dev/null | sort | awk 'END{ print $NF }')
 
+    # Obtain a screenshot from a device
     function adb-screen() {
       adb shell screencap -p /sdcard/screen.png
       adb pull /sdcard/screen.png ~/Desktop/$1
       adb shell rm /sdcard/screen.png
     }
 
+    # Install selected apk
     function adb-install() {
       local apk=$(find ./ -name "*.apk" | fzf)
       local package=$(aapt dump badging ''${apk} | awk '/package/{gsub("name=|'"'"'","");  print $2}')
       adb install -r -d -t ''${apk} && adb shell monkey -p ''${package} -c android.intent.category.LAUNCHER 1
     }
 
+    # Uninstall selected apk
     function adb-uninstall() {
       adb shell pm list package | sed -e s/package:// | fzf | xargs adb uninstall
     }
 
+    # Open selected app
     function adb-open() {
       local package=$(adb shell pm list package | sed -e s/package:// | fzf)
       local default_activity=$(adb shell pm dump ''${package} | grep -A 2 android.intent.action.MAIN | head -2 | tail -1 | awk '{print $2}')
       adb shell am start -n ''${default_activity}
     }
 
+    # Open URL
     function adb-link() {
       adb shell am start -W -a android.intent.action.VIEW -d $1
     }
 
+    # Clear selected app cache
     function adb-clear() {
       package=$(adb shell pm list package | sed -e s/package:// | fzf)
       adb shell pm clear $package
     }
 
+    # Show/Hide layout bounds
     function adb-layout() {
       local is_debug=$(adb shell getprop debug.layout)
       if $is_debug; then
@@ -58,6 +65,7 @@
       fi
     }
 
+    # Switch settings to keep activities
     function adb-keep-activity() {
       local is_kept=$(adb shell settings get global always_finish_activities)
       if [ $is_kept -eq 1 ]; then
@@ -69,6 +77,7 @@
       fi
     }
 
+    # Record a video of the device display
     function adb-record() {
       DATE=$(date '+%y%m%d%H%M%S')
       FILE_NAME=record-''${DATE}
@@ -111,6 +120,7 @@
       esac
     }
 
+    # Input text to EditText
     function adb-input() {
       adb shell input text $1
     }

@@ -2,7 +2,7 @@
 
 {
   programs.zsh.initContent = ''
-    # fzf find directory
+    # Find directory with fzf
     function find_buffer() {
       local current_buffer=$BUFFER
       local search_root=""

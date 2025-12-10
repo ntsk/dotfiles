@@ -2,7 +2,6 @@
 
 {
   programs.zsh.shellAliases = {
-    # Search repositories in ghq
     repos = ''cd $(ghq root)/$(ghq list | fzf)'';
     glog = "git log --graph --decorate --oneline";
   };
