@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./zsh
+    ./zsh/zsh.nix
   ];
 
   home.username = lib.mkDefault (builtins.getEnv "USER");
