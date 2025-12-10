@@ -16,6 +16,13 @@ fi
 cd "$DOTFILES_DIR"
 chmod -R +x bin
 
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  echo ""
+  echo "This script requires sudo access for nix-darwin."
+  sudo -v
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+fi
+
 get_nix_system() {
   local arch=$(uname -m)
   local os=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -44,7 +51,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   # nix-darwin requires root, but flake.nix uses $USER to determine the username
   # --impure allows builtins.getEnv to read environment variables
   # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
-  sudo sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
+  sudo -n sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
 else
   echo "=== Setting up Home Manager ==="
   # NIX_CONFIG: CI sets access-tokens to avoid GitHub API rate limit when fetching flakes
