@@ -40,9 +40,9 @@
 
   xdg.configFile = {
     "nvim/lua/plugins" = {
-      source = ../../../nvim/lua/plugins;
+      source = ../../../../nvim/lua/plugins;
       recursive = true;
     };
-    "nvim/lazy-lock.json".source = ../../../nvim/lazy-lock.json;
+    "nvim/lazy-lock.json".source = ../../../../nvim/lazy-lock.json;
   };
 }

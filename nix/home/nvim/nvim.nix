@@ -5,10 +5,10 @@
 # LSP servers are managed by Mason
 {
   imports = [
-    ./options.nix
-    ./keymaps.nix
-    ./autocmds.nix
-    ./lazy.nix
+    ./config/options.nix
+    ./config/keymaps.nix
+    ./config/autocmds.nix
+    ./config/lazy.nix
   ];
 
   programs.neovim = {
