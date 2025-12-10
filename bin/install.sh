@@ -1,6 +1,9 @@
 #!/bin/bash
 set -eu
 
+# This script is designed to be idempotent.
+# It can be run multiple times safely without causing errors or duplicating setup.
+
 DOTFILES_DIR=$HOME/dotfiles
 
 echo "=== dotfiles setup ==="
@@ -25,7 +28,9 @@ get_nix_system() {
 
 echo ""
 echo "=== Installing Nix ==="
-if ! command -v nix &> /dev/null; then
+if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif ! command -v nix &> /dev/null; then
   curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
   . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
