@@ -17,6 +17,7 @@
       typeset -gU cdpath fpath mailpath path
 
       path=(
+        /nix/var/nix/profiles/default/bin
         $HOME/.nix-profile/bin
         /usr/local/{bin,sbin}
         $GOPATH/bin
