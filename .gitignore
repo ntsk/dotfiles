@@ -1,1 +1,18 @@
+# macOS
 .DS_Store
+
+# Nix
+result
+
+# Editor
+*.swp
+*.swo
+*~
+
+# Local overrides
+*.local
+*.local.json
+
+# Secrets
+.env
+.env.*
