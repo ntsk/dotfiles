@@ -13,6 +13,7 @@
     ./rc/k8s.nix
     ./rc/android.nix
     ./rc/mise.nix
+    ./rc/clipboard.nix
   ];
 
   programs.zsh = {
