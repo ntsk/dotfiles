@@ -20,7 +20,7 @@
         else
           tac="tail -r"
         fi
-        BUFFER=$(fc -l -n 1 | eval $tac | fzf --exact --no-sort --query "^$LBUFFER")
+        BUFFER=$(fc -l -n 1 | eval $tac | awk '{$1=$1}; !seen[$0]++' | fzf --exact --no-sort --query "^$LBUFFER")
         CURSOR=$#BUFFER
         zle -R -c
       }
