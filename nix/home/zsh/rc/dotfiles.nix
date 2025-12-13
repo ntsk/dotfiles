@@ -13,11 +13,14 @@
           "$dotfiles_dir/bin/scripts/update.sh"
           ;;
         *)
-          echo "Usage: dotfiles <command>"
+          echo "Manage dotfiles with Nix flakes."
           echo ""
-          echo "Commands:"
-          echo "  switch: Apply configuration (darwin-rebuild/home-manager switch)"
-          echo "  update: Update flake.lock (nix flake update)"
+          echo "\033[1mUSAGE\033[0m"
+          echo "  dotfiles <command>"
+          echo ""
+          echo "\033[1mCOMMANDS\033[0m"
+          echo "  switch:  Apply configuration (darwin-rebuild/home-manager switch)"
+          echo "  update:  Update flake.lock (nix flake update)"
           ;;
       esac
     }
