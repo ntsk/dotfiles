@@ -10,7 +10,7 @@
           "$dotfiles_dir/bin/scripts/switch.sh"
           ;;
         update)
-          nix --extra-experimental-features 'nix-command flakes' flake update "$dotfiles_dir/nix"
+          "$dotfiles_dir/bin/scripts/update.sh"
           ;;
         *)
           echo "Usage: dotfiles <command>"
