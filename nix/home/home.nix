@@ -36,6 +36,8 @@
     tmux
     wget
     wezterm
+    zsh-completions
+    zsh-fzf-tab
   ];
 
   programs.git = {
