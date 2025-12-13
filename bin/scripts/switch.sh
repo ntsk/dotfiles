@@ -1,6 +1,10 @@
 #!/bin/bash
 set -eu
 
+if [ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]; then
+  . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+fi
+
 DOTFILES_DIR=$HOME/dotfiles
 
 get_nix_system() {
