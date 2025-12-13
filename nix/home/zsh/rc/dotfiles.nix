@@ -16,8 +16,8 @@
           echo "Usage: dotfiles <command>"
           echo ""
           echo "Commands:"
-          echo "  switch  Apply configuration"
-          echo "  update  Update flake.lock"
+          echo "  switch  Apply configuration (darwin-rebuild/home-manager switch)"
+          echo "  update  Update flake.lock (nix flake update)"
           ;;
       esac
     }
