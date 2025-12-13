@@ -14,6 +14,7 @@
     ./rc/android.nix
     ./rc/mise.nix
     ./rc/clipboard.nix
+    ./rc/dotfiles.nix
   ];
 
   programs.zsh = {
