@@ -30,12 +30,15 @@
     google-cloud-sdk
     jq
     mise
+    usage
     nerd-fonts.meslo-lg
     ripgrep
     tig
     tmux
     wget
     wezterm
+    zsh-completions
+    zsh-fzf-tab
   ];
 
   programs.git = {
