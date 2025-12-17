@@ -3,8 +3,11 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "Skill(code-review)",
+      "Skill(decision-archaeology)",
       "List(*)",
       "Fetch(*)",
+      "Bash(cd:*)",
       "Bash(ls:*)",
       "Bash(rg:*)",
       "Bash(mv:*)",
