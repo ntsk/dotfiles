@@ -28,6 +28,23 @@ return {
       }
 
       alpha.setup(dashboard.opts)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          local version = vim.version()
+          local lazy_stats = require("lazy").stats()
+          dashboard.section.footer.val = string.format(
+            "Neovim v%d.%d.%d   %d plugins   %.2fms",
+            version.major,
+            version.minor,
+            version.patch,
+            lazy_stats.count,
+            lazy_stats.startuptime
+          )
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })
     end,
   },
   {
