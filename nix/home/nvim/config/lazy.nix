@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 # lazy.nvim plugin manager setup
 # Plugins are defined in nvim/lua/plugins/
@@ -43,6 +43,6 @@
       source = ../../../../nvim/lua/plugins;
       recursive = true;
     };
-    "nvim/lazy-lock.json".source = ../../../../nvim/lazy-lock.json;
+    "nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim/lazy-lock.json";
   };
 }

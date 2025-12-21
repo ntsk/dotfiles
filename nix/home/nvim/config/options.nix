@@ -1,8 +1,8 @@
-{ ... }:
+{ lib, ... }:
 
 # Editor options and settings
 {
-  programs.neovim.extraLuaConfig = ''
+  programs.neovim.extraLuaConfig = lib.mkBefore ''
     vim.g.mapleader = " "
     vim.g.maplocalleader = " "
 
