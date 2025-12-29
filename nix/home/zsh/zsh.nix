@@ -15,6 +15,7 @@
     ./rc/mise.nix
     ./rc/clipboard.nix
     ./rc/dotfiles.nix
+    ./rc/caffeinate.nix
   ];
 
   programs.zsh = {
