@@ -26,6 +26,8 @@ jobs:
           x86_64-linux) SYSTEM="x86_64-linux" ;;
         esac
         nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
+      env:
+        NIXPKGS_ALLOW_UNFREE: "1"
 
   install-test:
     name: install-test (${{ matrix.os }})
@@ -44,5 +46,6 @@ jobs:
       run: $HOME/dotfiles/bin/install.sh
       env:
         NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
+        NIXPKGS_ALLOW_UNFREE: "1"
     - name: validate
       run: test -d $HOME/dotfiles
