@@ -3,7 +3,7 @@
 # lazy.nvim plugin manager setup
 # Plugins are defined in nvim/lua/plugins/
 {
-  programs.neovim.extraLuaConfig = ''
+  programs.neovim.initLua = ''
     local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
     if not vim.loop.fs_stat(lazypath) then
       vim.fn.system({
