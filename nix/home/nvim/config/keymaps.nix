@@ -2,7 +2,7 @@
 
 # Key mappings
 {
-  programs.neovim.extraLuaConfig = ''
+  programs.neovim.initLua = ''
     local keymap = vim.keymap.set
 
     keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
