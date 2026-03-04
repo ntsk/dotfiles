@@ -19,6 +19,7 @@
       path=(
         /nix/var/nix/profiles/default/bin
         $HOME/.nix-profile/bin
+        $HOME/.local/bin  # for Claude Code
         /usr/local/{bin,sbin}
         $GOPATH/bin
         $HOME/.local/share/mise/shims
