@@ -3,11 +3,36 @@
 # Git aliases and helper functions
 {
   programs.zsh.shellAliases = {
-    repos = ''cd $(ghq root)/$(ghq list | fzf)'';
     glog = "git log --graph --decorate --oneline";
   };
 
   programs.zsh.initContent = ''
+    function repos() {
+      local selected=$(ghq list | fzf)
+      if [ -z "$selected" ]; then
+        return
+      fi
+      local repo_path="$(ghq root)/$selected"
+      if [ "$1" = "-s" ]; then
+        local session_name=$(basename "$selected" | tr '.' '-')
+        if tmux has-session -t "$session_name" 2>/dev/null; then
+          if [ -n "$TMUX" ]; then
+            tmux switch-client -t "$session_name"
+          else
+            tmux attach-session -t "$session_name"
+          fi
+        else
+          if [ -n "$TMUX" ]; then
+            tmux new-session -d -s "$session_name" -c "$repo_path" && tmux switch-client -t "$session_name"
+          else
+            tmux new-session -s "$session_name" -c "$repo_path"
+          fi
+        fi
+      else
+        builtin cd -- "$repo_path"
+      fi
+    }
+
     # Search branch & git checkout
     function gco() {
       git checkout $(git branch | fzf | sed -e "s/\* //g" | awk "{print \$1}")
