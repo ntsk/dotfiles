@@ -19,6 +19,15 @@
 - Use the body to explain what and why
 - Use the imperative mood in the subject line
 
+## Available CLI Tools
+
+The following tools are installed via Nix. Prefer these over standard alternatives when using the shell:
+
+- `rg` (ripgrep): Prefer over `grep`
+- `fd`: Prefer over `find`
+- `gh`: Use for GitHub operations (PRs, issues, etc.)
+
+
 ## Development Philosophy
 
 ### Test-Driven Development (TDD)
