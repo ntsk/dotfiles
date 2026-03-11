@@ -5,6 +5,7 @@
 ## Code Style Guidelines
 
 - Do not write code comments unless specifically instructed to do so
+- Do not remove existing comments unless they no longer make sense due to the associated function being removed or fundamentally changed
 
 ## Git Commit Messages
 
