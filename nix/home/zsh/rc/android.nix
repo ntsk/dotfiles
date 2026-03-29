@@ -174,6 +174,23 @@
       esac
     }
 
+    # Pull a file from the device
+    function adb-pull() {
+      local device=$(_adb-select-device)
+      if [ -z "$device" ]; then
+        echo "No device found."
+        return 1
+      fi
+      local dir=''${1:-/sdcard/}
+      local file=$(adb -s ''${device} shell find ''${dir} -type f 2>/dev/null | fzf --preview "adb -s ''${device} shell ls -la {}")
+      if [ -z "$file" ]; then
+        echo "No file selected."
+        return 1
+      fi
+      local dest=''${2:-~/Desktop}
+      adb -s ''${device} pull "$file" "$dest"
+    }
+
     # Input text to EditText
     function adb-input() {
       local device=$(_adb-select-device)
