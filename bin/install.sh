@@ -17,7 +17,11 @@ cat << 'EOF'
 EOF
 
 echo "🚀 Cloning dotfiles..."
-"$SCRIPTS_DIR/clone.sh"
+if [ ! -d "$DOTFILES_DIR" ]; then
+  git clone https://github.com/ntsk/dotfiles.git "$DOTFILES_DIR"
+fi
+cd "$DOTFILES_DIR"
+chmod -R +x bin
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
   echo ""
