@@ -28,11 +28,11 @@ jobs:
 
       - name: Build base profile
         run: |
-          nix build ./base/nix#homeConfigurations.x86_64-linux.activationPackage -o base-profile
+          nix build ./base/nix#homeConfigurations.x86_64-linux.activationPackage --impure -o base-profile
 
       - name: Build PR profile
         run: |
-          nix build ./nix#homeConfigurations.x86_64-linux.activationPackage -o pr-profile
+          nix build ./nix#homeConfigurations.x86_64-linux.activationPackage --impure -o pr-profile
 
       - name: Generate diff with nvd
         id: nvd
