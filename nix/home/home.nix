@@ -33,7 +33,6 @@
     usage
     nerd-fonts.meslo-lg
     ripgrep
-    terraform
     tig
     tmux
     wget
