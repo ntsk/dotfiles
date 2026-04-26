@@ -12,7 +12,7 @@
     ./rc/docker.nix
     ./rc/k8s.nix
     ./rc/android.nix
-    ./rc/mise.nix
+
     ./rc/clipboard.nix
     ./rc/dotfiles.nix
     ./rc/caffeinate.nix
