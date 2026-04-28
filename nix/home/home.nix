@@ -30,7 +30,7 @@
     google-cloud-sdk
     jq
     usage
-    nerd-fonts.meslo-lg
+
     ripgrep
     tig
     tmux
