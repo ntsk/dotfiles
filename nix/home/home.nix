@@ -29,6 +29,7 @@
     ghq
     google-cloud-sdk
     jq
+    mise
     nerd-fonts.meslo-lg
     usage
 
