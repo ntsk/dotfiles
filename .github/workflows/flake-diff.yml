@@ -29,10 +29,14 @@ jobs:
       - name: Build base profile
         run: |
           nix build ./base/nix#homeConfigurations.x86_64-linux.activationPackage --impure -o base-profile
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
 
       - name: Build PR profile
         run: |
           nix build ./nix#homeConfigurations.x86_64-linux.activationPackage --impure -o pr-profile
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
 
       - name: Generate diff with nvd
         id: nvd
