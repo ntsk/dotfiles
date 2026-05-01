@@ -30,10 +30,10 @@
     google-cloud-sdk
     jq
     mise
-    usage
     nerd-fonts.meslo-lg
+    usage
+
     ripgrep
-    terraform
     tig
     tmux
     wget

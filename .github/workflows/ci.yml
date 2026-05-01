@@ -16,6 +16,11 @@ jobs:
       uses: cachix/install-nix-action@v31
       with:
         github_access_token: ${{ github.token }}
+    - name: cache nix store
+      uses: nix-community/cache-nix-action@v6
+      with:
+        primary-key: nix-${{ runner.os }}-${{ hashFiles('nix/flake.lock') }}
+        restore-prefixes-first-match: nix-${{ runner.os }}-
     - name: build
       run: |
         SYSTEM=$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -26,8 +31,6 @@ jobs:
           x86_64-linux) SYSTEM="x86_64-linux" ;;
         esac
         nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
-      env:
-        NIXPKGS_ALLOW_UNFREE: "1"
 
   install-test:
     name: install-test (${{ matrix.os }})
@@ -46,6 +49,5 @@ jobs:
       run: $HOME/dotfiles/bin/install.sh
       env:
         NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
-        NIXPKGS_ALLOW_UNFREE: "1"
     - name: validate
       run: test -d $HOME/dotfiles
