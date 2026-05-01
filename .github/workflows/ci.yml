@@ -26,7 +26,7 @@ jobs:
           aarch64-linux) SYSTEM="aarch64-linux" ;;
           x86_64-linux) SYSTEM="x86_64-linux" ;;
         esac
-        nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
+        nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace --option sandbox false -v
 
   # install-test temporarily disabled for CI debugging
   # install-test:
