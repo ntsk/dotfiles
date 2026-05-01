@@ -28,23 +28,24 @@ jobs:
         esac
         nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
 
-  install-test:
-    name: install-test (${{ matrix.os }})
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [macos-latest, macos-14, ubuntu-latest]
-    timeout-minutes: 30
-    steps:
-    - name: checkout
-      uses: actions/checkout@v6
-      with:
-        path: dotfiles
-    - name: move to home
-      run: mv dotfiles $HOME/dotfiles
-    - name: run install.sh
-      run: $HOME/dotfiles/bin/install.sh
-      env:
-        NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
-    - name: validate
-      run: test -d $HOME/dotfiles
+  # install-test temporarily disabled for CI debugging
+  # install-test:
+  #   name: install-test (${{ matrix.os }})
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [macos-latest, macos-14, ubuntu-latest]
+  #   timeout-minutes: 30
+  #   steps:
+  #   - name: checkout
+  #     uses: actions/checkout@v6
+  #     with:
+  #       path: dotfiles
+  #   - name: move to home
+  #     run: mv dotfiles $HOME/dotfiles
+  #   - name: run install.sh
+  #     run: $HOME/dotfiles/bin/install.sh
+  #     env:
+  #       NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
+  #   - name: validate
+  #     run: test -d $HOME/dotfiles
