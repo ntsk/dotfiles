@@ -29,6 +29,7 @@
     ghq
     google-cloud-sdk
     jq
+    nerd-fonts.meslo-lg
     usage
 
     ripgrep
