@@ -22,7 +22,6 @@
         $HOME/.local/bin  # for Claude Code
         /usr/local/{bin,sbin}
         $GOPATH/bin
-        $HOME/.local/share/mise/shims
         $path
       )
 

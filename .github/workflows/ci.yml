@@ -8,8 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, macos-14, ubuntu-latest]
-    timeout-minutes: 30
+        os: [macos-latest, ubuntu-latest]
     steps:
     - name: checkout
       uses: actions/checkout@v6
@@ -17,6 +16,11 @@ jobs:
       uses: cachix/install-nix-action@v31
       with:
         github_access_token: ${{ github.token }}
+    - name: cache nix store
+      uses: nix-community/cache-nix-action@v6
+      with:
+        primary-key: nix-${{ runner.os }}-${{ hashFiles('nix/flake.lock') }}
+        restore-prefixes-first-match: nix-${{ runner.os }}-
     - name: build
       run: |
         SYSTEM=$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -26,26 +30,24 @@ jobs:
           aarch64-linux) SYSTEM="aarch64-linux" ;;
           x86_64-linux) SYSTEM="x86_64-linux" ;;
         esac
-        nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace --option sandbox false -v
+        nix build "./nix#homeConfigurations.${SYSTEM}.activationPackage" --impure --print-build-logs --show-trace
 
-  # install-test temporarily disabled for CI debugging
-  # install-test:
-  #   name: install-test (${{ matrix.os }})
-  #   runs-on: ${{ matrix.os }}
-  #   strategy:
-  #     matrix:
-  #       os: [macos-latest, macos-14, ubuntu-latest]
-  #   timeout-minutes: 30
-  #   steps:
-  #   - name: checkout
-  #     uses: actions/checkout@v6
-  #     with:
-  #       path: dotfiles
-  #   - name: move to home
-  #     run: mv dotfiles $HOME/dotfiles
-  #   - name: run install.sh
-  #     run: $HOME/dotfiles/bin/install.sh
-  #     env:
-  #       NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
-  #   - name: validate
-  #     run: test -d $HOME/dotfiles
+  install-test:
+    name: install-test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v6
+      with:
+        path: dotfiles
+    - name: move to home
+      run: mv dotfiles $HOME/dotfiles
+    - name: run install.sh
+      run: $HOME/dotfiles/bin/install.sh
+      env:
+        NIX_CONFIG: "access-tokens = github.com=${{ github.token }}"
+    - name: validate
+      run: test -d $HOME/dotfiles
