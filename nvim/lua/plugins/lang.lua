@@ -5,14 +5,6 @@ return {
     lazy = false,
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.vcl = {
-        install_info = {
-          url = "https://github.com/ntsk/tree-sitter-vcl",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "vcl",
-      }
       parser_config.strudel = {
         install_info = {
           url = "https://github.com/ntsk/tree-sitter-strudel",
@@ -41,7 +33,6 @@ return {
         end
       end
 
-      ensure_queries("vcl", "ntsk/tree-sitter-vcl")
       ensure_queries("strudel", "ntsk/tree-sitter-strudel")
 
       require("nvim-treesitter.configs").setup({
@@ -55,12 +46,21 @@ return {
         },
       })
 
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "vcl",
-        command = "TSBufEnable highlight",
+      vim.filetype.add({
+        extension = {
+          vcl = "vcl",
+          str = "strudel",
+          std = "strudel",
+        },
       })
 
-      vim.filetype.add({ extension = { str = "strudel", std = "strudel" } })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "vcl",
+        callback = function()
+          vim.treesitter.start()
+        end,
+      })
+
       vim.api.nvim_create_autocmd("FileType", {
         pattern = "strudel",
         command = "TSBufEnable highlight",
