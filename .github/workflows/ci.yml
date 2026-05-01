@@ -16,11 +16,6 @@ jobs:
       uses: cachix/install-nix-action@v31
       with:
         github_access_token: ${{ github.token }}
-    - name: cache nix store
-      uses: nix-community/cache-nix-action@v6
-      with:
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('nix/flake.lock') }}
-        restore-prefixes-first-match: nix-${{ runner.os }}-
     - name: build
       run: |
         SYSTEM=$(uname -m)-$(uname -s | tr '[:upper:]' '[:lower:]')
