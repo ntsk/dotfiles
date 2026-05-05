@@ -31,6 +31,7 @@
     jq
     mise
     nerd-fonts.meslo-lg
+    tree-sitter
     usage
   ] ++ lib.optionals pkgs.stdenv.isLinux [
     xclip
