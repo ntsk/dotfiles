@@ -1,51 +1,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     build = ":TSUpdate",
     lazy = false,
     config = function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.strudel = {
-        install_info = {
-          url = "https://github.com/ntsk/tree-sitter-strudel",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "strudel",
-      }
-
-      -- Auto-download highlight queries for custom tree-sitter parsers.
-      -- nvim-treesitter main branch supports `queries` option in install_info,
-      -- but v0.10.0 does not. Download them manually and add to runtimepath.
-      local queries_base = vim.fn.stdpath("data") .. "/treesitter-queries"
-      vim.opt.runtimepath:append(queries_base)
-
-      local function ensure_queries(lang, repo)
-        local queries_dir = queries_base .. "/queries/" .. lang
-        local highlights_file = queries_dir .. "/highlights.scm"
-        if vim.fn.filereadable(highlights_file) == 0 then
-          vim.fn.mkdir(queries_dir, "p")
-          vim.fn.system({
-            "curl", "-sL",
-            "https://raw.githubusercontent.com/" .. repo .. "/main/queries/highlights.scm",
-            "-o", highlights_file
-          })
-        end
-      end
-
-      ensure_queries("strudel", "ntsk/tree-sitter-strudel")
-
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        indent = {
-          enable = true,
-        },
-      })
-
       vim.filetype.add({
         extension = {
           vcl = "vcl",
@@ -55,15 +14,10 @@ return {
       })
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = "vcl",
-        callback = function()
-          vim.treesitter.start()
+        callback = function(args)
+          if pcall(vim.treesitter.start, args.buf) then
+          end
         end,
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "strudel",
-        command = "TSBufEnable highlight",
       })
     end,
   },
