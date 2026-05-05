@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 # Basic neovim configuration managed by nix
 # Plugins are managed by lazy.nvim (see nvim/lua/plugins/)
@@ -16,8 +16,5 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-    ];
   };
 }
