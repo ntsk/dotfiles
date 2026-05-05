@@ -32,6 +32,8 @@
     mise
     nerd-fonts.meslo-lg
     usage
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
+    xclip
 
     ripgrep
     tig
