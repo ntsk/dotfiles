@@ -38,6 +38,9 @@ in
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-    plugins = [ treesitterParsers ];
+    # Prepend after lazy.setup to survive lazy.nvim's rtp reset.
+    initLua = lib.mkAfter ''
+      vim.opt.rtp:prepend("${treesitterParsers}")
+    '';
   };
 }
