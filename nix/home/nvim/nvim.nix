@@ -55,6 +55,12 @@ in
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    # Disable language providers we don't use. Ruby provider in particular
+    # leaks GEM_HOME into child processes (e.g. mason's ruby-lsp), causing it
+    # to try to install bundler into the read-only /nix/store.
+    withRuby = false;
+    withPython3 = false;
+    withNodeJs = false;
     # Prepend after lazy.setup to survive lazy.nvim's rtp reset.
     initLua = lib.mkAfter ''
       vim.opt.rtp:prepend("${treesitterParsers}")
