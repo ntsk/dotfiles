@@ -48,7 +48,29 @@ return {
     "itchyny/lightline.vim",
     lazy = false,
     init = function()
-      vim.g.lightline = { colorscheme = "wombat" }
+      vim.g.lightline = {
+        colorscheme = "wombat",
+        active = {
+          left = {
+            { "mode", "paste" },
+            { "readonly", "filename", "modified" },
+          },
+          right = {
+            { "lineinfo" },
+            { "percent" },
+            { "treesitter", "fileformat", "fileencoding", "filetype" },
+          },
+        },
+        component_function = {
+          treesitter = "LightlineTreesitter",
+        },
+      }
+
+      vim.cmd([[
+        function! LightlineTreesitter() abort
+          return luaeval('vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] ~= nil') ? "🌳" : ""
+        endfunction
+      ]])
     end,
   },
   {
