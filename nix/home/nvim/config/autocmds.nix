@@ -8,6 +8,21 @@
 
     local mygroup = augroup("MyAutoCmd", { clear = true })
 
+    vim.filetype.add({
+      extension = {
+        vcl = "vcl",
+        str = "strudel",
+        std = "strudel",
+      },
+    })
+
+    autocmd("FileType", {
+      group = mygroup,
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+      end,
+    })
+
     autocmd("FileType", {
       group = mygroup,
       pattern = "vue",

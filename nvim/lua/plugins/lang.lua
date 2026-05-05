@@ -1,27 +1,5 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    build = ":TSUpdate",
-    lazy = false,
-    config = function()
-      vim.filetype.add({
-        extension = {
-          vcl = "vcl",
-          str = "strudel",
-          std = "strudel",
-        },
-      })
-
-      vim.api.nvim_create_autocmd("FileType", {
-        callback = function(args)
-          if pcall(vim.treesitter.start, args.buf) then
-          end
-        end,
-      })
-    end,
-  },
-  {
     "fatih/vim-go",
     ft = "go",
     init = function()
