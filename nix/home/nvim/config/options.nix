@@ -56,7 +56,5 @@
     opt.undofile = true
     opt.undodir = undo_dir
     opt.viewdir = view_dir
-
-    vim.cmd("syntax on")
   '';
 }
