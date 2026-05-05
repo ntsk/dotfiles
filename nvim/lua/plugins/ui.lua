@@ -27,7 +27,7 @@ return {
       alpha.setup(dashboard.opts)
 
       vim.api.nvim_create_autocmd("User", {
-        pattern = "LazyVimStarted",
+        pattern = "LazyDone",
         callback = function()
           local version = vim.version()
           local lazy_stats = require("lazy").stats()
