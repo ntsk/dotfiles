@@ -1,5 +1,27 @@
 return {
   {
+    "ntsk/tree-sitter-vcl",
+    build = function(plugin)
+      local data = vim.fn.stdpath("data")
+      local parser_dir = data .. "/site/parser"
+      local queries_dir = data .. "/site/queries/vcl"
+      vim.fn.mkdir(parser_dir, "p")
+      vim.fn.mkdir(queries_dir, "p")
+      vim.fn.system({ "tree-sitter", "build", "-o", parser_dir .. "/vcl.so", plugin.dir })
+      vim.fn.system({ "cp", plugin.dir .. "/queries/highlights.scm", queries_dir .. "/" })
+    end,
+    ft = "vcl",
+    init = function()
+      vim.filetype.add({ extension = { vcl = "vcl" } })
+    end,
+    config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "vcl",
+        callback = function() vim.treesitter.start() end,
+      })
+    end,
+  },
+  {
     "fatih/vim-go",
     ft = "go",
     init = function()
