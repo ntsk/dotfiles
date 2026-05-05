@@ -7,22 +7,37 @@ let
   # Tree-sitter parsers to install via Nix.
   # Neovim ships with these parsers built-in (do not list here):
   #   c, lua, markdown, markdown_inline, query, vim, vimdoc
+  #
+  # Each entry: { pkg = nixpkgs grammar attribute name (without "tree-sitter-" prefix),
+  #               lang = treesitter language name (parser/queries dir name) }
   treesitterLanguages = [
-    "python"
-    "ruby"
-    "go"
-    "kotlin"
-    "java"
-    "swift"
-    "rust"
+    { pkg = "python"; lang = "python"; }
+    { pkg = "ruby"; lang = "ruby"; }
+    { pkg = "go"; lang = "go"; }
+    { pkg = "kotlin"; lang = "kotlin"; }
+    { pkg = "java"; lang = "java"; }
+    { pkg = "swift"; lang = "swift"; }
+    { pkg = "rust"; lang = "rust"; }
+    { pkg = "javascript"; lang = "javascript"; }
+    { pkg = "typescript"; lang = "typescript"; }
+    { pkg = "cpp"; lang = "cpp"; }
+    { pkg = "c-sharp"; lang = "c_sharp"; }
   ];
 
   treesitterParsers = pkgs.runCommandLocal "nvim-treesitter-parsers" { } ''
     mkdir -p $out/parser $out/queries
-    ${lib.concatMapStringsSep "\n" (lang: ''
-      ln -s ${pkgs.tree-sitter-grammars."tree-sitter-${lang}"}/parser $out/parser/${lang}.so
-      ln -s ${pkgs.tree-sitter-grammars."tree-sitter-${lang}"}/queries $out/queries/${lang}
-    '') treesitterLanguages}
+    ${lib.concatMapStringsSep "\n" (e:
+      let
+        grammar = pkgs.tree-sitter-grammars."tree-sitter-${e.pkg}";
+      in ''
+        ln -s ${grammar}/parser $out/parser/${e.lang}.so
+        if [ -d ${grammar}/queries ]; then
+          ln -s ${grammar}/queries $out/queries/${e.lang}
+        elif [ -d ${grammar.src}/queries ]; then
+          ln -s ${grammar.src}/queries $out/queries/${e.lang}
+        fi
+      ''
+    ) treesitterLanguages}
   '';
 in
 {

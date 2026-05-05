@@ -16,6 +16,8 @@
       },
     })
 
+    vim.treesitter.language.register("c_sharp", "cs")
+
     autocmd("FileType", {
       group = mygroup,
       callback = function(args)
