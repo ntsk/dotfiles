@@ -38,6 +38,10 @@
 
     # Install selected apk
     function adb-install() {
+      if ! command -v aapt > /dev/null 2>&1; then
+        echo "aapt not found. Install Android SDK build-tools."
+        return 1
+      fi
       local device=$(_adb-select-device)
       if [ -z "$device" ]; then
         echo "No device found."
