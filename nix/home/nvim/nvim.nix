@@ -22,6 +22,8 @@ let
     { pkg = "typescript"; lang = "typescript"; }
     { pkg = "cpp"; lang = "cpp"; }
     { pkg = "c-sharp"; lang = "c_sharp"; }
+    { pkg = "html"; lang = "html"; }
+    { pkg = "css"; lang = "css"; }
   ];
 
   treesitterParsers = pkgs.runCommandLocal "nvim-treesitter-parsers" { } ''
