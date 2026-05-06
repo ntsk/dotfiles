@@ -31,18 +31,17 @@
     jq
     mise
     nerd-fonts.meslo-lg
-    tree-sitter
-    usage
-  ] ++ lib.optionals pkgs.stdenv.isLinux [
-    xclip
-
     ripgrep
     tig
     tmux
+    tree-sitter
+    usage
     wget
     wezterm
     zsh-completions
     zsh-fzf-tab
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
+    xclip
   ];
 
   programs.git = {
