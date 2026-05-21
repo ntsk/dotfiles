@@ -39,7 +39,7 @@
           src = inputs."android-cli-${system}" or null;
         in if src == null
            then null
-           else pkgs.callPackage ./home/android-cli.nix { inherit src; };
+           else pkgs.callPackage ./pkgs/android-cli.nix { inherit src; };
       mkHomeConfig = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
