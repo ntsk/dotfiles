@@ -241,5 +241,15 @@
       local apks=$(find ./ -name "*.apks" | fzf)
       bundletool install-apks --apks=$apks
     }
+
+    # Select an emulator with fzf and start it (android-cli)
+    function emu-start() {
+      local avd=$(android emulator list | fzf)
+      if [ -z "$avd" ]; then
+        echo "No emulator selected."
+        return 1
+      fi
+      android emulator start "$avd" "$@"
+    }
   '';
 }
