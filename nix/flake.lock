@@ -1,5 +1,41 @@
 {
   "nodes": {
+    "android-cli-aarch64-darwin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-hQC1WSeZZGeu8/0Pe23YLrm/YjnN7FXZQ7jUsMWgbwI=",
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/darwin_arm64/android"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/darwin_arm64/android"
+      }
+    },
+    "android-cli-x86_64-darwin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-8a1TbX8Wr2FnF+8GFL6fiGeNjbA7SjpPtoLTGeUFgNo=",
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/darwin_x86_64/android"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/darwin_x86_64/android"
+      }
+    },
+    "android-cli-x86_64-linux": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-7PLQa0oON0cMyXNPwa/RYnFlmHI6lMfmBJv+tgZFU4k=",
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/linux_x86_64/android"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://dl.google.com/android/cli/latest/linux_x86_64/android"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -58,6 +94,9 @@
     },
     "root": {
       "inputs": {
+        "android-cli-aarch64-darwin": "android-cli-aarch64-darwin",
+        "android-cli-x86_64-darwin": "android-cli-x86_64-darwin",
+        "android-cli-x86_64-linux": "android-cli-x86_64-linux",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs"
