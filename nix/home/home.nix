@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, androidCli ? null, ... }:
 
 {
   imports = [
@@ -42,7 +42,7 @@
     zsh-fzf-tab
   ] ++ lib.optionals pkgs.stdenv.isLinux [
     xclip
-  ];
+  ] ++ lib.optional (androidCli != null) androidCli;
 
   programs.git = {
     enable = true;
