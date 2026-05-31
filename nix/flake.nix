@@ -11,35 +11,31 @@
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Android CLI is distributed as a single prebuilt binary per platform.
-    # Tracking the "latest" URLs as flake inputs lets `nix flake update`
-    # refresh them alongside everything else. No aarch64-linux binary exists.
-    android-cli-aarch64-darwin = {
-      url = "file+https://dl.google.com/android/cli/latest/darwin_arm64/android";
-      flake = false;
-    };
-    android-cli-x86_64-darwin = {
-      url = "file+https://dl.google.com/android/cli/latest/darwin_x86_64/android";
-      flake = false;
-    };
-    android-cli-x86_64-linux = {
-      url = "file+https://dl.google.com/android/cli/latest/linux_x86_64/android";
-      flake = false;
-    };
   };
 
   outputs = inputs@{ nixpkgs, home-manager, nix-darwin, ... }:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
       currentUser = builtins.getEnv "USER";
+      # Android CLI ships as a single prebuilt binary per platform behind a
+      # mutable "latest" URL, so it cannot be meaningfully locked: the recorded
+      # hash stops matching once upstream overwrites the file. Fetch it impurely
+      # at eval time rather than as a flake input, so the lock file never claims
+      # a reproducibility it cannot provide. No aarch64-linux binary exists.
+      androidCliUrls = {
+        aarch64-darwin = "https://dl.google.com/android/cli/latest/darwin_arm64/android";
+        x86_64-darwin = "https://dl.google.com/android/cli/latest/darwin_x86_64/android";
+        x86_64-linux = "https://dl.google.com/android/cli/latest/linux_x86_64/android";
+      };
       androidCliFor = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          src = inputs."android-cli-${system}" or null;
-        in if src == null
+          url = androidCliUrls.${system} or null;
+        in if url == null
            then null
-           else pkgs.callPackage ./pkgs/android-cli.nix { inherit src; };
+           else pkgs.callPackage ./pkgs/android-cli.nix {
+             src = builtins.fetchurl { inherit url; };
+           };
       mkHomeConfig = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
