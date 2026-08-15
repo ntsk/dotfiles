@@ -17,14 +17,13 @@
     })
 
     vim.treesitter.language.register("c_sharp", "cs")
+    vim.treesitter.language.register("bash", "sh")
 
-    -- Stub locals-scope predicates from nvim-treesitter that some grammar
-    -- queries reference. Without proper locals.scm analysis we cannot evaluate
-    -- them; return safe defaults so highlighting does not error out.
-    vim.treesitter.query.add_predicate("is?", function() return false end, { force = true, all = false })
+    -- Stub the locals-scope predicate from nvim-treesitter that the nix,
+    -- javascript and ruby queries reference. Without proper locals.scm analysis
+    -- we cannot evaluate it; return a safe default so highlighting does not
+    -- error out.
     vim.treesitter.query.add_predicate("is-not?", function() return true end, { force = true, all = false })
-    vim.treesitter.query.add_predicate("has-ancestor?", function() return false end, { force = true, all = false })
-    vim.treesitter.query.add_predicate("has-parent?", function() return false end, { force = true, all = false })
 
     autocmd("FileType", {
       group = mygroup,
@@ -49,12 +48,6 @@
       group = mygroup,
       pattern = "*.vue",
       command = "setlocal filetype=vue",
-    })
-
-    autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
-      pattern = "*.tsx",
-      command = "set filetype=typescript.tsx",
     })
 
     autocmd({ "BufNewFile", "BufRead" }, {
