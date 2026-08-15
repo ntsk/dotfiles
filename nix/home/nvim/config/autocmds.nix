@@ -52,12 +52,6 @@
 
     autocmd({ "BufNewFile", "BufRead" }, {
       group = mygroup,
-      pattern = "*.tsx",
-      command = "set filetype=typescript.tsx",
-    })
-
-    autocmd({ "BufNewFile", "BufRead" }, {
-      group = mygroup,
       pattern = { "Dangerfile", "Fastfile" },
       command = "set filetype=ruby",
     })
