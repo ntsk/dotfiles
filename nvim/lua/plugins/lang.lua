@@ -21,10 +21,6 @@ return {
     end,
   },
   {
-    "cespare/vim-toml",
-    ft = "toml",
-  },
-  {
     "windwp/nvim-ts-autotag",
     event = { "BufReadPost", "BufNewFile" },
     opts = {},
