@@ -21,11 +21,6 @@ return {
     end,
   },
   {
-    "windwp/nvim-ts-autotag",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {},
-  },
-  {
     "gruvw/strudel.nvim",
     build = "npm ci",
     ft = { "strudel" },
