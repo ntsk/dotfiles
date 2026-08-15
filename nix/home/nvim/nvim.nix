@@ -24,6 +24,7 @@ let
     { pkg = "c-sharp"; lang = "c_sharp"; }
     { pkg = "html"; lang = "html"; }
     { pkg = "css"; lang = "css"; }
+    { pkg = "vcl"; lang = "vcl"; }
   ];
 
   treesitterParsers = pkgs.runCommandLocal "nvim-treesitter-parsers" { } ''
