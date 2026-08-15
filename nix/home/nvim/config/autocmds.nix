@@ -17,6 +17,7 @@
     })
 
     vim.treesitter.language.register("c_sharp", "cs")
+    vim.treesitter.language.register("bash", "sh")
 
     -- Stub locals-scope predicates from nvim-treesitter that some grammar
     -- queries reference. Without proper locals.scm analysis we cannot evaluate

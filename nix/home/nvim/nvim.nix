@@ -9,7 +9,9 @@ let
   #   c, lua, markdown, markdown_inline, query, vim, vimdoc
   #
   # Each entry: { pkg = nixpkgs grammar attribute name (without "tree-sitter-" prefix),
-  #               lang = treesitter language name (parser/queries dir name) }
+  #               lang = treesitter language name (parser/queries dir name),
+  #               queryDir = path to the queries directory within the grammar
+  #                          (optional, defaults to "queries") }
   treesitterLanguages = [
     { pkg = "python"; lang = "python"; }
     { pkg = "ruby"; lang = "ruby"; }
@@ -25,6 +27,13 @@ let
     { pkg = "html"; lang = "html"; }
     { pkg = "css"; lang = "css"; }
     { pkg = "vcl"; lang = "vcl"; }
+    { pkg = "nix"; lang = "nix"; }
+    { pkg = "yaml"; lang = "yaml"; }
+    { pkg = "bash"; lang = "bash"; }
+    { pkg = "json"; lang = "json"; }
+    # tree-sitter-xml ships queries for both xml and dtd; pick the xml one.
+    { pkg = "xml"; lang = "xml"; queryDir = "queries/xml"; }
+    { pkg = "toml"; lang = "toml"; }
   ];
 
   treesitterParsers = pkgs.runCommandLocal "nvim-treesitter-parsers" { } ''
@@ -32,12 +41,13 @@ let
     ${lib.concatMapStringsSep "\n" (e:
       let
         grammar = pkgs.tree-sitter-grammars."tree-sitter-${e.pkg}";
+        queryDir = e.queryDir or "queries";
       in ''
         ln -s ${grammar}/parser $out/parser/${e.lang}.so
-        if [ -d ${grammar}/queries ]; then
-          ln -s ${grammar}/queries $out/queries/${e.lang}
-        elif [ -d ${grammar.src}/queries ]; then
-          ln -s ${grammar.src}/queries $out/queries/${e.lang}
+        if [ -d ${grammar}/${queryDir} ]; then
+          ln -s ${grammar}/${queryDir} $out/queries/${e.lang}
+        elif [ -d ${grammar.src}/${queryDir} ]; then
+          ln -s ${grammar.src}/${queryDir} $out/queries/${e.lang}
         fi
       ''
     ) treesitterLanguages}
