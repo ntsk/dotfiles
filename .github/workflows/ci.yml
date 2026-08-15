@@ -6,6 +6,7 @@ jobs:
   nix-build:
     name: nix-build (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
@@ -35,6 +36,7 @@ jobs:
   install-test:
     name: install-test (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
