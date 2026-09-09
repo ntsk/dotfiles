@@ -1,5 +1,5 @@
 # dotfiles
-![](https://github.com/ntsk/dotfiles/workflows/CI/badge.svg)
+[![CI](https://github.com/ntsk/dotfiles/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ntsk/dotfiles/actions/workflows/ci.yml?query=branch%3Amain)
 
 ## Install
 ```
