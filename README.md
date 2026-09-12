@@ -8,7 +8,7 @@ curl -sL https://raw.githubusercontent.com/ntsk/dotfiles/main/bin/install.sh | b
 
 This script will:
 1. Clone or update the dotfiles repository
-2. Install [Nix](https://nixos.org/) with the official multi-user installer
+2. Install [Nix](https://nixos.org/)
 3. Apply configuration:
    - **macOS**: nix-darwin + Home Manager (system settings and user packages)
    - **Linux**: Home Manager only (user packages)
