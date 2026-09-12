@@ -16,6 +16,11 @@
 
   programs.home-manager.enable = true;
 
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
