@@ -16,8 +16,8 @@
 
   programs.home-manager.enable = true;
 
-  nix = lib.mkIf pkgs.stdenv.isLinux {
-    package = pkgs.nix;
+  nix = {
+    package = lib.mkDefault pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 

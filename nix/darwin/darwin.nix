@@ -4,8 +4,6 @@
   system.stateVersion = 5;
   system.primaryUser = username;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   users.users.${username} = {
     name = username;
     home = "/Users/${username}";
