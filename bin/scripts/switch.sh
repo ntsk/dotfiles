@@ -20,8 +20,11 @@ get_nix_system() {
 SYSTEM=$(get_nix_system)
 CURRENT_USER="$USER"
 
+export NIX_CONFIG="extra-experimental-features = nix-command flakes
+${NIX_CONFIG:-}"
+
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  sudo sh -c "export USER='$CURRENT_USER' NIX_CONFIG='${NIX_CONFIG:-}'; nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
+  sudo sh -c "export USER='$CURRENT_USER' NIX_CONFIG='$NIX_CONFIG'; nix run nix-darwin -- switch --flake '$DOTFILES_DIR/nix#${SYSTEM}' --impure"
 else
-  NIX_CONFIG="${NIX_CONFIG:-}" nix --extra-experimental-features 'nix-command flakes' run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
+  nix run home-manager -- switch --flake "$DOTFILES_DIR/nix#${SYSTEM}" --impure
 fi

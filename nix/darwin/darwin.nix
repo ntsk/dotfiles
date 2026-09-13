@@ -4,12 +4,6 @@
   system.stateVersion = 5;
   system.primaryUser = username;
 
-  # Disable nix-darwin's Nix management to avoid conflict with Determinate Nixd
-  nix.enable = false;
-
-  # Disable /etc/zshenv management to avoid conflict with Determinate Nix installer
-  environment.etc.zshenv.enable = false;
-
   users.users.${username} = {
     name = username;
     home = "/Users/${username}";
