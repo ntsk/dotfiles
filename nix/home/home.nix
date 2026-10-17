@@ -75,9 +75,19 @@
   };
 
   home.file.".claude" = {
-    source = ../../claude;
+    source = lib.cleanSourceWith {
+      src = ../../claude;
+      filter = path: type: path != toString ../../claude/settings.json;
+    };
     recursive = true;
   };
+  home.activation.claudeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    target="${config.home.homeDirectory}/.claude/settings.json"
+    if [ ! -e "$target" ]; then
+      run mkdir -p "$(dirname "$target")"
+      run install -m 644 ${../../claude/settings.json} "$target"
+    fi
+  '';
 
   xdg.configFile = {
     "wezterm" = {
