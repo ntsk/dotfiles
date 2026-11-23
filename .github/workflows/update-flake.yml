@@ -16,7 +16,7 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v7
-      - uses: cachix/install-nix-action@v31
+      - uses: cachix/install-nix-action@v32
         with:
           github_access_token: ${{ github.token }}
       - uses: DeterminateSystems/update-flake-lock@v29
